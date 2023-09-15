@@ -1,1 +1,8 @@
-My first note!
+## startup notes
+### GitHub tutorial takeaways
+`git clone <repo url>`  <- clones a repository locally<br>
+`git add mytest.txt`  <- stages the edits you made in that file<br>
+`git commit -am "my description"`  <- commits changes<br>
+`git push`  <- pushed commits to the repo<br>
+`git pull`  <- pulls up-to-date version of the repo<br>
+`git fetch` then `git status`  <- lets you view changes without automatically updating (as a pull does)
