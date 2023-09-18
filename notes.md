@@ -6,3 +6,7 @@
 `git push`  <- pushed commits to the repo<br>
 `git pull`  <- pulls up-to-date version of the repo<br>
 `git fetch` then `git status`  <- lets you view changes without automatically updating (as a pull does)
+
+### Server creation takeaways
+I can remotely access my server using my terminal with the following command (after moving to the correct directory):<br>
+`ssh -i production.pem ubuntu@44.205.237.113`
