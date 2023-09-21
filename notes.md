@@ -10,3 +10,9 @@
 ### Server creation takeaways
 I can remotely access my server using my terminal with the following command (after moving to the correct directory):<br>
 `ssh -i production.pem ubuntu@44.205.237.113`
+
+### Domain names takeaways
+Domain names are broken up into a subdomain, followed by a root domain. The root domain is made up of a secondary domain followed by a top domain:<br>
+`[subdomain.]*secondary.top`  ->  my.byu.edu ("my" is the subdomain, "byu.edu" is the root domain, "byu" is the secondary domain, and "edu" is the top domain)<br>
+<br>
+A DNS server is a domain name system. This system maps a domain name (like byu.edu) to an IP address (128.187.16.184).
