@@ -26,13 +26,20 @@ You can watch the negotiation take place using the `curl` command with the `-v` 
 
 ### HTML
 Start each doc with `<!DOCTYPE html>` to tell the browser the doc type<br>
+Your main html file (wherever you want the user to initially land) should be titled `index.html`<br>
+<br>
 Hyperlinks are represented with an `a` tag with the link to the other page in the `href` attribute:<br>
 `<a href="https://byu.edu">Go to the Y</a>`<br>
+<br>
 Comments: `<!-- commented text -->`<br>
-Your main html file (wherever you want the user to initially land) should be titled `index.html`<br>
-Adding a CSS border rule can make formatting easier:<br>
+<br>
+When rendering and working with HTML, adding a CSS border rule can make formatting easier:<br>
 `* {font-family: Arial; border: medium dashed #e3d5c2; padding: 0.25em; margin: 0.25em;}`<br>
-
-
-
-
+<br>
+Inputs are a way for the user to interact with the page. You specify the `type` of input. Here is an example:<br>
+`<label for="checkbox1">Check me</label> <input type="checkbox" name="varCheckbox" value="checkbox1" checked />`<br>
+Most imputs share these attributes:
+  - name = name of the object
+  - disabled = whether it's available to the user
+  - value = the initial value of the input
+  - required = signifies if it's required to be valid
