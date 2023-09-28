@@ -23,3 +23,16 @@ Caddy acts as a gateway for Simon and startup requests (routes port 443 user to 
 <br>
 HTTPS (Secure Hypertext Transport Protocol) means a negotiation has taken place to encrypt the data (through TPS protocol) before transferring anything<br>
 You can watch the negotiation take place using the `curl` command with the `-v` (verbose) flag:<br>`curl -v -s https://byu.edu > /dev/null`
+
+### HTML
+Start each doc with `<!DOCTYPE html>` to tell the browser the doc type<br>
+Hyperlinks are represented with an `a` tag with the link to the other page in the `href` attribute:<br>
+`<a href="https://byu.edu">Go to the Y</a>`<br>
+Comments: `<!-- commented text -->`<br>
+Your main html file (wherever you want the user to initially land) should be titled `index.html`<br>
+Adding a CSS border rule can make formatting easier:<br>
+`* {font-family: Arial; border: medium dashed #e3d5c2; padding: 0.25em; margin: 0.25em;}`<br>
+
+
+
+
