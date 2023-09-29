@@ -41,7 +41,7 @@
         <nav>
             <menu>
             <li><a href="index.html">Tasks</a></li>
-            <li><a href="habits.html">Habits</a></li>
+            <li><a href="Habits.html">Habits</a></li>
             <li><a href="sessions.html">Sessions</a></li>
             <li><a href="community.html">Community</a></li>
             </menu>
@@ -52,48 +52,38 @@
     
     <!---- Body ---->
     <body>
-    
-        <h2>My Cards</h2>
+        <h2>Sessions</h2>
 
-        <input type="button" value="New Card"> 
-        <input type="button" value="New List">
-
-        <!-- Cards -->
+        <!-- Sessions -->
         <div>
-            <br>
-            <div class="card">
-                <span class="card_title">CS260</span> <button class="card_button">+</button>
-                <ul>
-                    <input type="checkbox"> <span>[1] Finish this assignment</span>
-                    <br>
-                    <input type="checkbox"> <span>[2] Finish the next assignment</span>
-                    <br>
-                    <input type="checkbox"> <span>[3] Finish all the assignments</span>
-                </ul>
-            </div>
+        <label>Select Card or Habit:</label>
+        <select>
+            <option value="volvo">CS260</option>
+            <option value="saab">CS236</option>
+            <option value="mercedes">Reading 20 min/day</option>
+            <option value="audi">Exercise daily</option>
+        </select>
 
-            <div class="card">
-                <span class="card_title">CS236</span> <button class="card_button">+</button>
-                <ul>
-                    <input type="checkbox"> <span>[1] Finish project 1</span>
-                    <br>
-                    <input type="checkbox"> <span>[2] Start project 2</span>
-                    <br>
-                    <input type="checkbox"> <span>[3] Finish all the projects</span>
-                </ul>
-            </div>
+        <br>
+        <br>
 
-            <div class="card">
-                <span class="card_title">Shopping List</span> <button class="card_button">+</button>
-                <ul>
-                    <input type="checkbox"> <span>milk</span>
-                    <br>
-                    <input type="checkbox"> <span>eggs</span>
-                    <br>
-                    <input type="checkbox"> <span>pop tarts</span>
-                </ul>
-            </div>
+        <div class="card">
+            <span class="card_title">CS260</span> <button class="card_button">+</button>
+            <ul>
+                <input type="checkbox"> <span>[1] Finish this assignment</span>
+                <br>
+                <input type="checkbox"> <span>[2] Finish the next assignment</span>
+                <br>
+                <input type="checkbox"> <span>[3] Finish all the assignments</span>
+            </ul>
         </div>
+
+        <br>
+        <br>
+
+        <label>Session length (mins):</label>
+        <input type="number" value="25">
+
         <hr />
     </body>
 
