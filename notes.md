@@ -38,7 +38,7 @@ When rendering and working with HTML, adding a CSS border rule can make formatti
 <br>
 Inputs are a way for the user to interact with the page. You specify the `type` of input. Here is an example:<br>
 `<label for="checkbox1">Check me</label> <input type="checkbox" name="varCheckbox" value="checkbox1" checked />`<br><br>
-Most imputs share these attributes:
+Most inputs share these attributes:
   - name = name of the object
   - disabled = whether it's available to the user
   - value = the initial value of the input
@@ -46,8 +46,8 @@ Most imputs share these attributes:
 The HTML elements that represent media include `img`, `audio`, `video`, `svg`, and `canvas`. <br>
 Media elements need to clarify the path (either full or relative) to the item. A full path is a link (`https://images.pexels.com/photos/164170/pexels-photo-164170.jpeg`) and a relative path is from your current directory (`images/photo.jpg`).<br>
 <br>
-Images are created this way:<br>
-`<img alt="mountain landscape" src="https://images.pexels.com/photos/164170/pexels-photo-164170.jpeg" alt="pic of mountains" />`<br>
+Images are created this way (but with brackets around them):<br>
+img alt="mountain landscape"src="https://images.pexels.com/photos/164170/pexels-photo-164170.jpeg" alt="pic of mountains"<br>
 <br>
 The internal media elements `svg` and `canvas` allow you to actually create images directly within your HTML.
 
