@@ -35,9 +35,9 @@ For this deliverable, I built out the structure of my website using HTML
 + **HTML pages** — Four pages were built out, each a key element of my server (*Tasks* displays all current to-do list styled task cards, *Habits* displays the current habits the user is tracking along with their streaks, *Sessions* is a page in which the user can start focus sessions using the Pomodoro Method, *Community* is a page where helpful tips can be shared by other users)
 + **Head icon** — I used [favicon.io](https://favicon.io/) to design a logo for *focus* and linked it in the head element
 + **Menu links** — Each page has a menu in the header; the menu enables the user to navigate throughout the services
-+ **Textual content** —
-+ **Placeholder** — some kind of 3rd party service call?
-+ **Images** —
++ **Textual content** — *Community* page begins with some text content about general study tips
++ **Placeholder** — The *Sessions* page will have a working timer for sessions (brought in with a 3rd party service call), but a picture is there for now
++ **Images** — *Community* page has a landscape picture at the top
 + **Login** — Input box and a submit button (button functionality will come later)
 + **DB data** — Task and habit cards will display saved data for each user (I hard-coded the values for now)
 + **WebSocket** — The *Community* page will display live comments and tips from other users (I hard-coded the values for now)
