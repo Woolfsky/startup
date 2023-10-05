@@ -92,5 +92,82 @@ Attribute selectors allow you to select elements based upon their attributes: `p
 <br>
 `section:hover` assigns a rule to wherever your mouse is hovering
 <br>
+<br>
+There are many **units** that can be used in CSS rules. Here is a list of commonly used units:
+
+| Unit | Description                                                      |
+| ---- | ---------------------------------------------------------------- |
+| px   | The number of pixels                                             |
+| pt   | The number of points (1/72 of an inch)                           |
+| in   | The number of inches                                             |
+| cm   | The number of centimeters                                        |
+| %    | A percentage of the parent element                               |
+| em   | A multiplier of the width of the letter `m` in the parent's font |
+| rem  | A multiplier of the width of the letter `m` in the root's font   |
+| ex   | A multiplier of the height of the element's font                 |
+| vw   | A percentage of the viewport's width                             |
+| vh   | A percentage of the viewport's height                            |
+| vmin | A percentage of the viewport's smaller dimension                 |
+| vmax | A percentage of the viewport's larger dimension                  |
+
+**Color** values can be described from keywords (`red`), RGB hex codes (`#00FFAA22`), RGB functions (`rgb(128, 255, 128, 0.5)`), and HSL functions (`hsl(180, 30%, 90%, 0.5)`).
+<br>
+<br>
+
+**Fonts** can be changed in a CSS rule through the `font-family` property. The four major font families include `Serif`, `sans-serif`, `fixed`, and `symbol`. `fixed` means all letters are the same size, and `symbol` represents things like emojis. <br>
+<br>
+Creating a `@font-face` rule enables you to import a font from the internet:
+
+```css
+@font-face {
+  font-family: 'Quicksand';
+  src: url('https://cs260.click/fonts/quicksand.woff2');
+}
+
+p {
+  font-family: Quicksand;
+}
+```
 
 
+If you do not want to host font files on your server, then you can load them from a font provider. Google provides a large selection of [open source fonts](https://fonts.google.com/) that you can use for free. You can import them like this:
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Rubik Microbe&display=swap');
+
+p {
+  font-family: 'Rubik Microbe';
+}
+```
+
+**Animations** can be created by adding the `animation` properties, and then defining the `keyframes`:
+```css
+p {
+  text-align: center;
+  font-size: 20vh;
+
+  animation-name: demo;
+  animation-duration: 3s;
+}
+
+@keyframes demo {
+  from {
+    font-size: 0vh;
+  }
+
+  95% {
+    font-size: 21vh;
+  }
+
+  to {
+    font-size: 20vh;
+  }
+}
+```
+
+**Responsive Design** is the term for setting up your site to adjust according to screen size and orientation.<br>
+<br>
+The CSS `display` lets you change how something is displayed in a browser:<br>
++ `none` doesn't display the element (though it's still technically there)
++ `block` fills the width of the parent element (`p` and `div` default to this)
++ `inline` is only as big as the object (`span` defaults to this)
