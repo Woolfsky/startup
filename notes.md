@@ -47,7 +47,50 @@ The HTML elements that represent media include `img`, `audio`, `video`, `svg`, a
 Media elements need to clarify the path (either full or relative) to the item. A full path is a link (`https://images.pexels.com/photos/164170/pexels-photo-164170.jpeg`) and a relative path is from your current directory (`images/photo.jpg`).<br>
 <br>
 Images are created this way (but with brackets around them):<br>
-img alt="mountain landscape"src="https://images.pexels.com/photos/164170/pexels-photo-164170.jpeg" alt="pic of mountains"<br>
+img alt='mountain landscape' src='https://images.pexels.com/photos/164170/pexels-photo-164170.jpeg' alt='pic of mountains'<br>
 <br>
 The internal media elements `svg` and `canvas` allow you to actually create images directly within your HTML.
+
+### CSS
+CSS (Cascading Style Sheets) works using rules. A `rule` is comprised of a `selector` that selects the elements to apply the rule to, and one or more `declarations` that represent the `property` to style with the given property `value`. For example:<br>
+<br>
+```
+p {
+  font-family: sans-serif;
+  font-size: 2em;
+  color: navy;
+  text-shadow: 3px 3px 1px #cccccc;
+}
+```
+<br>
+There are three ways to associate a CSS rule with your HTML:
++ within a single element (highest precedence): `<p style="color:green">CSS</p>`
++ as a style element in the `head` of the HTML: `<head><style>...put a rule here...</style></head>`
++ by hyperlinking the external file (lowest precedence): `<link rel="stylesheet" href="styles.css" />`
+
+Child elements inherit the rules of their parent elements all the way up. Rules can be overridden by the child elements if desired.<br>
+<br>
+The box model is how CSS holds everything. From smallest to largest is content (text/images) > padding (inherits background color) > border (color/thickness/line stype) > margin (only represents whitespace)<br>
+<br>
+CSS Selectors are used to cascade the style down throughout the document. 
+<br>
+The `body` selector is used to apply something to the entire document. 
+<br>
+The astrisk selector (`*`) also works for everything, but `body` is more specific.
+<br>
+Headings like `h1` can be used as well.
+<br>
+We can use a `descendant combinator` that is defined with a space-delimited list of values where each item in the list is a descendant of the previous item (e.g., `section h2` is a selector that applys to all `h2` elements that are a *child* of a `section`.
+<br>
+`.summary` is a selector that applies to the class 'summary'
+<br>
+`p.summary` applies to all paragraphs with the class 'summary'
+<br>
+`#physics` applies to the ID 'physics'
+<br>
+Attribute selectors allow you to select elements based upon their attributes: `p[class='summary']` applies to paragraphs with the summary class.
+<br>
+`section:hover` assigns a rule to wherever your mouse is hovering
+<br>
+
 
