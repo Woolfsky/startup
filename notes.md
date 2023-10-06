@@ -202,7 +202,7 @@ The float property can be either right, left, or none to stay fixed while the in
 
 
 
-Using *Flex*: <br>
+Using *Flex*: See [this pen](https://codepen.io/Woolfsky/pen/jOXQQRa) for an example<br>
 + setting `html { height: 100% }` and then `main {flex: 1;}` makes main take up the full site
 + `justify-content: center;` makes the content in the center horizontally
 + `align-items: center;` makes the content in the center vertically
