@@ -194,7 +194,17 @@ The `@media` selector is used to manage the responsiveness. The following code r
   }
 }
 ```
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-```
 
-The `float` property can be either `right`, `left`, or `none` to stay fixed while the inline text around it shrinks with the page resizing.
+<br>
+The float property can be either right, left, or none to stay fixed while the inline text around it shrinks with the page resizing.
+<br>
+<br>
+
+
+
+Using *Flex*: <br>
++ setting `html { height: 100% }` and then `main {flex: 1;}` makes main take up the full site
++ `justify-content: center;` makes the content in the center horizontally
++ `align-items: center;` makes the content in the center vertically
++ when `flex: 0;`, the content does not move from its location
+
