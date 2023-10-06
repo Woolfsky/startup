@@ -62,16 +62,19 @@ p {
   text-shadow: 3px 3px 1px #cccccc;
 }
 ```
-<br>
+
 There are three ways to associate a CSS rule with your HTML:
-+ within a single element (highest precedence): `<p style="color:green">CSS</p>`
-+ as a style element in the `head` of the HTML: `<head><style>...put a rule here...</style></head>`
-+ by hyperlinking the external file (lowest precedence): `<link rel="stylesheet" href="styles.css" />`
+Within a single element using the `style` tag (highest precedence), as a `<style>` element in the head of the HTML, or by hyperlinking the external file (lowest precedence): `<style link rel='stylesheet' href='somehref.something'></style>`
+
+<br>
+<br>
 
 Child elements inherit the rules of their parent elements all the way up. Rules can be overridden by the child elements if desired.<br>
 <br>
 The box model is how CSS holds everything. From smallest to largest is content (text/images) > padding (inherits background color) > border (color/thickness/line stype) > margin (only represents whitespace)<br>
+
 <br>
+
 **CSS Selectors** are used to cascade the style down throughout the document:
 <br>
 The `body` selector is used to apply something to the entire document. 
@@ -92,7 +95,9 @@ Attribute selectors allow you to select elements based upon their attributes: `p
 <br>
 `section:hover` assigns a rule to wherever your mouse is hovering
 <br>
+
 <br>
+
 There are many **units** that can be used in CSS rules. Here is a list of commonly used units:
 
 | Unit | Description                                                      |
@@ -170,4 +175,26 @@ p {
 The CSS `display` lets you change how something is displayed in a browser:<br>
 + `none` doesn't display the element (though it's still technically there)
 + `block` fills the width of the parent element (`p` and `div` default to this)
-+ `inline` is only as big as the object (`span` defaults to this)
++ `inline` is only as big as the object (`b` and `span` defaults to this)
++ `flex` displays the children in a flexible orientation
++ `grid` displays the children in a grid
+
+Placing this tag in the `head` element will prevent the browser from scaling the site for you based on the screen size and orientation:<br>
+```html
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+```
+
+
+The `@media` selector is used to manage the responsiveness. The following code rotates the div 270 degrees if the orientation become portrait:
+
+```css
+@media (orientation: portrait) {
+  div {
+    transform: rotate(270deg);
+  }
+}
+```
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+```
+
+The `float` property can be either `right`, `left`, or `none` to stay fixed while the inline text around it shrinks with the page resizing.
