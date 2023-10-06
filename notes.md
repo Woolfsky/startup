@@ -208,3 +208,38 @@ Using *Flex*: See [this pen](https://codepen.io/Woolfsky/pen/jOXQQRa) for an exa
 + `align-items: center;` makes the content in the center vertically
 + when `flex: 0;`, the content does not move from its location
 
+#### Frameworks
+Frameworks are a bunch of pre-made CSS so you don't have to start from scratch. *Bootstrap* is the most common framework, followed by the rapidly-approaching competitor, *Tailwind*. [Here](https://codepen.io/leesjensen/pen/JjZavjW) is a great CodePen that uses a lot of Bootstrap's content. <br>
+<br>
+Getting Bootstrap into your site requires a `link` in the `head` element and a `script` at the end of the `body` element: <br>
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    ...
+  </body>
+</html>
+```
+
+and
+
+```html
+<body>
+  ...
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"
+  ></script>
+</body>
+```
