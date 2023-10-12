@@ -30,7 +30,7 @@ I will use the required technologies in the following way:<br>
 + **WebSocket** - either announcing when someone finishes a Pomodoro session or just announcing the tips comments (which you can disable, and which auto-disable during a focus session)
 + **React** - application ported to use the React web framework
 
-### HTML
+## HTML Deliverable
 For this deliverable, I built out the structure of my website using HTML
 + **HTML pages** — Four pages were built out, each a key element of my server (*Tasks* displays all current to-do list styled task cards, *Habits* displays the current habits the user is tracking along with their streaks, *Sessions* is a page in which the user can start focus sessions using the Pomodoro Method, *Community* is a page where helpful tips can be shared by other users)
 + **Head icon** — I used [favicon.io](https://favicon.io/) to design a logo for *focus* and linked it in the head element
@@ -41,3 +41,12 @@ For this deliverable, I built out the structure of my website using HTML
 + **Login** — Input box and a submit button (button functionality will come later)
 + **DB data** — Task and habit cards will display saved data for each user (I hard-coded the values for now)
 + **WebSocket** — The *Community* page will display live comments and tips from other users (I hard-coded the values for now)
+
+## CSS Deliverable
+For this deliverable, I styled the application to the desired aesthetics
++ **Header, footer, and main content body** 
++ **Navigation elements** 
++ **Responsive to window resizing** 
++ **Application elements** 
++ **Application text content** 
++ **Application images** 
