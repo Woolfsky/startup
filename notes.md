@@ -11,6 +11,14 @@
 I can remotely access my server using my terminal with the following command (after moving to the correct directory):<br>
 `ssh -i production.pem ubuntu@44.205.237.113`
 
+### Deploying to prod
+To deploy changes to Simon (or startup):
+1. ensure the deploy script is correct
+2. ensure my current IP address is in the approved security group
+3. clone the Simon repository into the startup directory (i.e. calling ls in the startup directory should show `simon-css` or whatever the repository was)
+4. navigate into that new Simon repository
+5. run `./deployFiles.sh -k ../../production.pem -h skylerwoolf.click -s simon`
+
 ### Domain names
 Domain names are broken up into a subdomain, followed by a root domain. The root domain is made up of a secondary domain followed by a top domain:<br>
 `[subdomain.]*secondary.top`  ->  my.byu.edu ("my" is the subdomain, "byu.edu" is the root domain, "byu" is the secondary domain, and "edu" is the top domain)<br>
