@@ -331,3 +331,25 @@ or
 ```
 
 Arrow functions also inherit the `this` pointer (gets access to creation scope; this is called making a `closure`). This lets them remember the creation-scope variables, even after they have disappeared or were changed in the current scope.
+
+
+#### JSON
+JSON = JavaScript Object Notation (it easily converts to and back from JavaScript)<br>
+The most important data type to know is JSON is the `object` (e.g. `{"a":1,"b":"crockford"}`)<br>
+A JSON `object` is made up of key-value pairs. The key is always a string, and the value has to be either a `string`, `number`, `boolean`, `object`, `array`, or `null`.<br>
+
+You can convert JSON to, and from, JavaScript using the `JSON.parse` and `JSON.stringify` functions.
+
+```js
+const obj = { a: 2, b: 'crockford', c: undefined };
+const json = JSON.stringify(obj);
+const objFromJson = JSON.parse(json);
+
+console.log(obj, json, objFromJson);
+
+// OUTPUT:
+// {a: 2, b: 'crockford', c: undefined}
+// {"a":2, "b":"crockford"}
+// {a: 2, b: 'crockford'}
+```
+
