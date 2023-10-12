@@ -243,3 +243,91 @@ and
   ></script>
 </body>
 ```
+### JavaScript
+Comment in JS with a `//line comment` or `/*block comment*/` <br>
+<br>
+The console is like a terminal, but it is just an environment for debugging.<br>
+You can write substitution elements for strings in JS with `%s`: `console.log('hello %s', 'world');`<br>
+You can even style the console output using `%c`: `console.log('%c JavaScript Demo', 'font-size:1.5em; color:green;');`<br>
+`'` and `"` both work for strings, but you can create string literals (f-strings) using `` ` ``. You need to use `${eval_me}` around the thing you want to get evaluated in the string literal.<br>
+
+You can time code to see how long it takes to run:<br>
+```js
+console.time('demo time');
+// ... some code that takes a long time.
+console.timeEnd('demo time');
+// OUTPUT: demo time: 9762.74 ms
+```
+You can also count how many times a loop occurs:<br>
+```js
+console.count('a');
+// OUTPUT: a: 1
+console.count('a');
+// OUTPUT: a: 2
+console.count('b');
+// OUTPUT: b: 1
+```
+<br>
+You import JS into your HTML in the `header` or in the `body`:<br>
+
+```html
+<head>
+  <script src="javascript.js"></script>
+</head>
+<body>
+  <button onclick="sayHello()">Say Hello</button>
+  <button onclick="sayGoodbye()">Say Goodbye</button>
+  <script>
+    function sayGoodbye() {
+      alert('Goodbye');
+    }
+  </script>
+</body>
+```
+
+JS variables are declared with either `let` (changeable) or `const` (unchangeable).<br>
+Primitive types in JS include `Null`, `Undefined`, `Boolean`, `Number`, `BigInt`, `String`, and `Symbol`<br>
+<br>
+JavaScript defines several object types. Some of the more commonly used objects include the following.
+
+| Type       | Use                                                                                    | Example                  |
+| ---------- | -------------------------------------------------------------------------------------- | ------------------------ |
+| `Object`   | A collection of properties represented by name value pairs. Values can be of any type. | `{a:3, b:'fish'}`        |
+| `Function` | An object that has the ability to be called.                                           | `function a() {}`        |
+| `Date`     | Calendar dates and times.                                                              | `new Date('1995-12-17')` |
+| `Array`    | An ordered sequence of any type.                                                       | `[3, 'fish']`            |
+| `Map`      | A collection of key value pairs that support efficient lookups.                        | `new Map()`              |
+| `JSON`     | A lightweight data-interchange format used to share information across programs.       | `{"a":3, "b":"fish"}`    |
+
+`===` is the equality operator (`==` in python), `&&` is and, `||` is or, `!` is not.<br>
+<br>
+You can also use the ternary operator. This provides a compact `if else` representation.
+
+```js
+a === 1 ? console.log(1) : console.log('not 1');
+```
+
+#### Functions
+This is how you declare a function:<br>
+```js
+function hello(who) {
+  return 'hello ' + who;
+}
+```
+
+Anonymous function can be unnamed and then just assigned to a variable:<br>
+```js
+// Anonymous declaration of the function that is later assigned to a variable
+const add = function (a, b) {
+  return a + b;
+};
+```
+
+Arrow functions are like lambda functions in Python:<br>
+```js
+(var1, var2) => var1 + var2
+or
+(var3, var4) => {return var3 + var4}
+```
+
+Arrow functions also inherit the `this` pointer (gets access to creation scope; this is called making a `closure`). This lets them remember the creation-scope variables, even after they have disappeared or were changed in the current scope.
