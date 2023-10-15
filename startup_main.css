@@ -70,7 +70,7 @@ header ul.nav {
 }
 
 .cards_container {
-    display: flex;
+    display: flex; 
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
