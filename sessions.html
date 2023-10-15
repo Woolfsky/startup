@@ -7,97 +7,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>focus</title>
 
+    <!-- CSS Styling -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="startup_main.css"/>
+
     <!-- Getting the browser logo -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-
-    <style>
-        .card {
-            display: inline-block;
-            border: 3px solid black;
-            width: 300px;
-            padding: 10px;
-            position: relative;
-        }
-        .card_title {
-            font-weight: bold;
-        }
-        .card_button {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-        }
-    </style>
   </head>
 
   <body>
     <!---- Header ---->
-    <header>
-        <h1>focus</h1>
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <h1 style="margin-left: 30px;">focus</h1>
 
-        <!-- Menu -->
-        <nav>
-            <menu>
-            <li><a href="index.html">Tasks</a></li>
-            <li><a href="Habits.html">Habits</a></li>
-            <li><a href="sessions.html">Sessions</a></li>
-            <li><a href="community.html">Community</a></li>
-            </menu>
-        </nav>
+      <!-- Menu -->
+      <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">Tasks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="habits.html">Habits</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sessions.html">Sessions</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="community.html">Community</a>
+            </li>
 
-        <hr />
-    </header>
+        </ul>
+
+      <!-- Login -->
+      <div class="col-md-1 text-center">
+          <button type="button" class="btn btn-outline-secondary">Login</button>
+        </div>
+
+      <hr />
+  </header>
     
     <!---- Body ---->
-    <body>
-        <h2>Sessions</h2>
+    <main>
+      <h2 class="my_cards" style="text-align: left;">Sessions</h2>     
+      <br> 
 
         <!-- Sessions -->
         <div>
-        <label>Select Card or Habit:</label>
-        <select>
-            <option value="volvo">CS260</option>
-            <option value="saab">CS236</option>
-            <option value="mercedes">Reading 20 min/day</option>
-            <option value="audi">Exercise daily</option>
-        </select>
+          <div>
+            <label>Select Card or Habit:</label>
+            <select>
+                <option value="CS260">CS260</option>
+                <option value="CS236">CS236</option>
+                <option value="Reading">Reading 20 min/day</option>
+                <option value="Exercise">Exercise daily</option>
+            </select>
+          </div>
+          <br>
+          <div> 
+            <label>Session length (mins):</label><input type="number" value="25">
+          </div>
+        </div>
+        
+
+        
 
         <br>
         <br>
 
-        <div class="card">
-            <span class="card_title">CS260</span> <button class="card_button">+</button>
-            <ul>
-                <input type="checkbox"> <span>[1] Finish this assignment</span>
+        <!-- Selected card -->
+        
+          <div class="cards_container" style="gap: 100px;">
+            <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                <h5 class="card-title">CS260</h5>
+                <p class="card-text">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                        Finish this assignment
+                        </li>
+                        <li class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                        Finish the next assignment
+                        </li>
+                        <li class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                        Third checkbox
+                        </li>
+                        <li class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                        Finish all the assignments
+                        </li>
+                    </ul>
+                </p>
+                <a href="#" class="btn btn-outline-secondary">+</a>
+                </div>
+            </div>
+
+          <!-- Session timer -->
+            <div>
+              <div class="card" style="width: 20rem; align-content: center;">
+                <img src="https://media.istockphoto.com/id/904475088/vector/stopwatch-icon.jpg?s=612x612&w=0&k=20&c=SM0DKmmrYfJKdGoVrhXuk8cMlvlXpt5ExROqr-QEN4w=" alt="picture of clock" width="300">
                 <br>
-                <input type="checkbox"> <span>[2] Finish the next assignment</span>
-                <br>
-                <input type="checkbox"> <span>[3] Finish all the assignments</span>
-            </ul>
+                <div style="justify-content: center; display:flex; gap: 5px;">
+                  <button class="btn btn-outline-success">Start</button> <button class="btn btn-outline-danger">Stop</button> <button class="btn btn-outline-secondary">Reset</button>
+                </div>
+              </div>
+            </div>
+
+
         </div>
 
         <br>
         <br>
 
-        <!-- Session timer -->
-        <label>Session length (mins):</label><input type="number" value="25">
-        <br>
-        <br>
-        <img src="https://media.istockphoto.com/id/904475088/vector/stopwatch-icon.jpg?s=612x612&w=0&k=20&c=SM0DKmmrYfJKdGoVrhXuk8cMlvlXpt5ExROqr-QEN4w=" alt="picture of clock" width="300">
-        <br>
-        <button>Start</button> <button>Stop</button> <button>Reset</button>
 
-
-        <hr />
-    </body>
+    </main>
 
     <!---- Footer ---->
     <footer>
         <span>Creator's GitHub can be found</span> <a href="https://github.com/Woolfsky/startup/tree/main">here</a>
     </footer>
-
 
   </body>
 

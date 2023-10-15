@@ -7,96 +7,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>focus</title>
 
+    <!-- CSS Styling -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="startup_main.css"/>
+
     <!-- Getting the browser logo -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-
-    <style>
-        .card {
-            display: inline-block;
-            border: 3px solid black;
-            width: 300px;
-            padding: 10px;
-            position: relative;
-        }
-        .card_title {
-            font-weight: bold;
-        }
-        .card_button {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-        }
-    </style>
   </head>
 
   <body>
     <!---- Header ---->
-    <header>
-        <h1>focus</h1>
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <h1 style="margin-left: 30px;">focus</h1>
 
         <!-- Menu -->
-        <nav>
-            <menu>
-            <li><a href="index.html">Tasks</a></li>
-            <li><a href="Habits.html">Habits</a></li>
-            <li><a href="sessions.html">Sessions</a></li>
-            <li><a href="community.html">Community</a></li>
-            </menu>
-        </nav>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html">Tasks</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="habits.html">Habits</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sessions.html">Sessions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="community.html">Community</a>
+              </li>
+
+          </ul>
+
+        <!-- Login -->
+        <div class="col-md-1 text-center">
+            <button type="button" class="btn btn-outline-secondary">Login</button>
+          </div>
 
         <hr />
     </header>
     
     <!---- Body ---->
-    <body>
-        <h2>Community Tips & Tricks for Studying</h2>
+    <main>
+        <div style="text-align: left; margin: 10px;">
+            <h2 style="text-align: center;">Community Tips & Tricks for Studying</h2>
 
-        <img src="https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2747&q=80" alt="nature" width="1400">
+            <img class="mountains" src="https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2747&q=80" alt="nature" width="1400">
 
-        <!-- Community Tips -->
-        <h3>General Study Tips</h3>
-        <p>
-            Everyone learns differently, so there is no one-size-fits-all approach to studying. 
-            However, there are some general tips that can help you study more effectively.
-        </p>
-        <p>
-            Two tips that are often very effective include:
-        </p>
-        <ul>
-            <p><strong>Teach the material.</strong> Teaching the material to someone else or even to yourself out loud forces your mind to 
-                re-organize the information in a way that makes sense to you. Try teaching each main chapter or idea to your 
-                roommate or to your pillow, or stand up and walk around like you're teaching a class.</p>
-            <p><strong>Quiz yourself.</strong> The most effective way to quiz yourself is to write out a practice test of your own creation. 
-                As you study each section of the book, write 2-5 multiple choice or fill in the blank questions. 
-                Try to make them as realistic as possible. Then, take the test in your next study session or the next day.</p>
-        </ul>
-        <p>
-            Other general study tips include:
-        </p>
-        <ul>
-            <p><strong>Find a study space that works for you.</strong> Some people prefer to study in a quiet library, while others prefer to study at home or in a coffee shop. Experiment to find a space where you can focus and avoid distractions.</p>
-            <p><strong>Set realistic goals.</strong> Don't try to cram all of your studying into one night. Instead, break down your studying into smaller, more manageable chunks.</p>
-            <p><strong>Take breaks.</strong> It's important to take breaks while you're studying to avoid burnout. Get up and move around every 20-30 minutes, or take a longer break for lunch or dinner.</p>
-            <p><strong>Reward yourself.</strong> When you reach a study goal, reward yourself with something you enjoy. This will help you stay motivated.</p>
-        </ul>
-        <h2>Community Forum</h2>
-        <p>
-            <strong>Jaxen L.</strong> [Yesterday at 12:34 pm]
-            <br>
-            <p>I usually study best when I turn my phone completely off. Otherwise I get distracted super easily.</p>
-        </p>
-        <p>
-            <strong>Tanner M.</strong> [Yesterday at 1:12 pm]
-            <br>
-            <p>I really have a hard time studying in my apartment. My roomates are coming in and out all day. I have to work in the library or in a coffee shop in the corner</p>
-        </p>
+            <!-- Community Tips -->
+            <h3 style="padding-top: 10px;">General Study Tips</h3>
+            <p>
+                Everyone learns differently, so there is no one-size-fits-all approach to studying. 
+                However, there are some general tips that can help you study more effectively.
+            </p>
+            <p>
+                Two tips that are often very effective include:
+            </p>
+            <ul>
+                <p><strong>Teach the material.</strong> Teaching the material to someone else or even to yourself out loud forces your mind to 
+                    re-organize the information in a way that makes sense to you. Try teaching each main chapter or idea to your 
+                    roommate or to your pillow, or stand up and walk around like you're teaching a class.</p>
+                <p><strong>Quiz yourself.</strong> The most effective way to quiz yourself is to write out a practice test of your own creation. 
+                    As you study each section of the book, write 2-5 multiple choice or fill in the blank questions. 
+                    Try to make them as realistic as possible. Then, take the test in your next study session or the next day.</p>
+            </ul>
+            <p>
+                Other general study tips include:
+            </p>
+            <ul>
+                <p><strong>Find a study space that works for you.</strong> Some people prefer to study in a quiet library, while others prefer to study at home or in a coffee shop. Experiment to find a space where you can focus and avoid distractions.</p>
+                <p><strong>Set realistic goals.</strong> Don't try to cram all of your studying into one night. Instead, break down your studying into smaller, more manageable chunks.</p>
+                <p><strong>Take breaks.</strong> It's important to take breaks while you're studying to avoid burnout. Get up and move around every 20-30 minutes, or take a longer break for lunch or dinner.</p>
+                <p><strong>Reward yourself.</strong> When you reach a study goal, reward yourself with something you enjoy. This will help you stay motivated.</p>
+            </ul>
+            <h2>Community Forum</h2>
+            <p>
+                <strong>Jaxen L.</strong> [Yesterday at 12:34 pm]
+                <br>
+                <p>I usually study best when I turn my phone completely off. Otherwise I get distracted super easily.</p>
+            </p>
+            <p>
+                <strong>Tanner M.</strong> [Yesterday at 1:12 pm]
+                <br>
+                <p>I really have a hard time studying in my apartment. My roomates are coming in and out all day. I have to work in the library or in a coffee shop in the corner</p>
+            </p>
 
-
+        </div>
         <hr />
-    </body>
+    </main>
 
     <!---- Footer ---->
     <footer>
