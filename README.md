@@ -49,4 +49,4 @@ For this deliverable, I styled the application to the desired aesthetics
 + **Responsive to window resizing** - My pages all look great with different browser sizes and proportions
 + **Application elements** - Used good contrast and white space to make it easy to use
 + **Application text content** - Text content wraps when the window gets too tight and all the text is a consistent font
-+ **Application images** - Images are centered
++ **Application images** - Images are centered even when page changes
