@@ -44,9 +44,9 @@ For this deliverable, I built out the structure of my website using HTML
 
 ## CSS Deliverable
 For this deliverable, I styled the application to the desired aesthetics
-+ **Header, footer, and main content body** 
-+ **Navigation elements** 
-+ **Responsive to window resizing** 
-+ **Application elements** 
-+ **Application text content** 
-+ **Application images** 
++ **Header, footer, and main content body** - I structured everything to look aesthetically consistent and cleaner
++ **Navigation elements** - My nav bar has on-theme aesthetics and is right aligned to look better
++ **Responsive to window resizing** - My pages all look great with different browser sizes and proportions
++ **Application elements** - Used good contrast and white space to make it easy to use
++ **Application text content** - Text content wraps when the window gets too tight and all the text is a consistent font
++ **Application images** - Images are centered
