@@ -434,7 +434,7 @@ Any function that returns an object is considered a constructor and can be invok
 <br>
 JS Objects have the `this` pointer so it can reference itself as part of an Object method (really just a key that has a function as a value).<br>
 <br>
-Classes can be used to define Objects. Class declarations look similar to declaring an object, but classes have an explicit constructor and assumed function declarations. `#` is used to make a class function or property private.<br>
+Classes can be used to define Objects. Class declarations look similar to declaring an object, but classes have an explicit constructor and assumed function declarations. `#` is used to make a class function or property private.
 
 
 ```js
@@ -468,6 +468,10 @@ class Employee extends Person {
   }
 }
 ```
+
+`static` functions and attributes for a class are only accessible to the class, not the instances of that class.
+`get` and `set` functions are methods within a class where you formally set or get a (usually private) attribute of a class instance.
+`super()` is how you call the parent class constructor (essentially `__init__`) in python.
 
 #### Scope
 JS uses scope to determine which variables are visible in different situations:
