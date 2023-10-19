@@ -469,3 +469,11 @@ class Employee extends Person {
 }
 ```
 
+#### Scope
+JS uses scope to determine which variables are visible in different situations:
+- Global - Visible to all code (`this` in global scope is the window)
+- Module - Visible to all code running in a module
+- Function - Visible within a function
+- Block - Visible within a block of code delimited by curly braces
+
+A closure is defined as a function and its surrounding state. When an object creates a function, that function has access to the object's `this` pointer. When an object *creates* an arrow function, that arrow function has access to the global `this` (assuming it's called in the global scope. However, when an object *returns* an arrow function, that arrow function has access to the object's `this`.
