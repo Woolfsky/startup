@@ -361,3 +361,105 @@ console.log(obj, json, objFromJson);
 // {a: 2, b: 'crockford'}
 ```
 
+
+#### RegEx
+Regular expressions are built into JS. You can create a regular expression using the class constructor or a regular expression literal.
+
+```js
+const objRegex = new RegExp('ab*', 'i');
+const literalRegex = /ab*/i;
+```
+
+The `string` class has several functions that accept regular expressions. This includes `match`, `replace`, `search`, and `split`.
+
+```js
+const petRegex = /(dog)|(cat)|(bird)/gim;
+const text = 'Both cats and dogs are pets, but not rocks.';
+
+text.match(petRegex);
+// RETURNS: ['cat', 'dog']
+
+text.replace(petRegex, 'animal');
+// RETURNS: Both animals and animals are pets, but not rocks.
+
+petRegex.test(text);
+// RETURNS: true
+```
+
+#### Rest
+If you want to pass in an arbitrate number of parameters, you can use a `rest` parameter, denoted by three dots. The `rest` parameter needs to be the last parameter in the function signature.<br>
+
+
+```js
+function hasNumber(test, ...numbers) {
+  return numbers.some((i) => i === test);
+}
+
+hasNumber(2, 1, 2, 3);
+// RETURNS: true
+```
+
+
+#### Exceptions
+JS uses the normal `try`, `catch`, `finally`, and `throw` syntax. If an exception is `thrown` in the `try` block, the interpreter will skip the rest of the `try` block and go to the `catch` block. Regardless of whether or not an exception is caught, the `finally` code will run.<br>
+
+
+```js
+try {
+  // normal execution code
+} catch (err) {
+  // exception handling code
+} finally {
+  // always called code
+}
+```
+
+#### Destructuring
+Destructuring is when you pull out elements of an object or array, and storing them as new variables.<br>
+E.g., `const a = [1, 2, 4, 5]; const [b, c] = a; console.log(b, c); //output: 1, 2`
+
+
+#### JS Objects and Classes
+JS uses the term `object` to refer to both any object (Promise, Map, Object, Function, Date...) and then the `Object` object (key value pairs). You create an `Object` using the `new` keyword (`const obj = new Object({a:3})`). You can assign a value to a `property` (key) using the dot notation or bracket notation (`obj.name = 'Skyler' or obj[name] = 'Skyler'`). Keys need to be either a `string` or a `symbol` (i.e. 'name' and name are valid). Values can be any data type.<br>
+<br>
+Three important Object functions include `entries` (`Object.entries(obj)`) which outputs an array of key value pairs, `keys` (`Object.keys(obj)`) which outputs an array of keys, and `values` (`Object.values(obj)`) which outputs an array of values.<br>
+<br>
+Any function that returns an object is considered a constructor and can be invoked with the new operator.<br>
+<br>
+JS Objects have the `this` pointer so it can reference itself as part of an Object method (really just a key that has a function as a value).<br>
+<br>
+Classes can be used to define Objects. Class declarations look similar to declaring an object, but classes have an explicit constructor and assumed function declarations. `#` is used to make a class function or property private.<br>
+
+
+```js
+class Person {
+  constructor(name) {
+    this.name = name;
+    this.#secretName = this.name + ' (secret shhhh!)';
+  }
+
+  log() {
+    console.log('My name is ' + this.name);
+  }
+}
+
+const p = new Person('Eich');
+p.log();
+// OUTPUT: My name is Eich
+```
+
+Inheritance can be used with classes by using the `extends` keyword in the class declaration. `super` is how you access or override parent class elements.
+
+```js
+class Employee extends Person {
+  constructor(name, position) {
+    super(name);
+    this.position = position;
+  }
+
+  print() {
+    return super.print() + '. I am a ' + this.position;
+  }
+}
+```
+
