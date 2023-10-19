@@ -407,10 +407,16 @@ JS uses the normal `try`, `catch`, `finally`, and `throw` syntax. If an exceptio
 ```js
 try {
   // normal execution code
-} catch (err) {
+  let x = 1;
+  if (x === 1) {
+    throw new Error("This is a custom error message.");
+  }
+} catch (error) {
   // exception handling code
+  console.error("An error occurred: " + error.message);
 } finally {
   // always called code
+  console.log("This happens no matter what")
 }
 ```
 
