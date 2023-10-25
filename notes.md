@@ -481,3 +481,46 @@ JS uses scope to determine which variables are visible in different situations:
 - Block - Visible within a block of code delimited by curly braces
 
 A closure is defined as a function and its surrounding state. When an object creates a function, that function has access to the object's `this` pointer. When an object *creates* an arrow function, that arrow function has access to the global `this` (assuming it's called in the global scope. However, when an object *returns* an arrow function, that arrow function has access to the object's `this`.
+
+#### Document Object Model (DOM)
+You can **access** the DOM through the `document` variable in JS. `document` is the root node of the DOM. Every element in the DOM is a node. The `.children` method of a node is a list of the child elements. `document.querySelectorAll('p')` lets you interact with all the `p` elements in the DOM. `.textContent` is all the text in the element. `innerHTML` is a textual representation of the node's html.<br>
+<br>
+You can **manipulate** the DOM using `document` too. First, make the object, then append it to an existing item in the DOM:<br>
+
+```js
+function insertChild(parentSelector, text) {
+  const newChild = document.createElement('div');
+  newChild.textContent = text;
+
+  const parentElement = document.querySelector(parentSelector);
+  parentElement.appendChild(newChild);
+}
+
+insertChild('#courses', 'new course');
+```
+
+Similar to `.appendChild`, `.removeChild` removes an element.<br>
+<br>
+You can *inject* entire blocks of HTML code in the DOM using `innerHTML`:
+
+```js
+const el = document.querySelector('div');
+el.innerHTML = '<div class="injected"><b>Hello</b>!</div>';
+```
+
+Note, injecting HTML is often a route taken by hackers so be careful.<br>
+<br>
+**Event listeners** can be added in these two ways:<br>
+
+```js
+const submitDataEl = document.querySelector('#submitData');
+submitDataEl.addEventListener('click', function (event) {
+  console.log(event.type);
+});
+```
+
+```html
+<button onclick='alert("clicked")'>click me</button>
+```
+
+
