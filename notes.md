@@ -560,3 +560,4 @@ coinToss
 //    Toss completed
 ```
 
+**Async/Await** is a better way than using promises. The `async` keyword declares that a function returns a promise. The `await` keyword wraps a call to the `async` function, blocks execution until the promise has resolved, and then returns the result of the promise. If you return an asynchronous function without prefixing it with `await`, it will just return a promise that is stuck in the *pending* state. By prefixing the asynchronous function with `await`, the execution of the function will be held up until it resolves to either *fulfilled* or *rejected*. 
