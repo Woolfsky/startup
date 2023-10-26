@@ -50,3 +50,11 @@ For this deliverable, I styled the application to the desired aesthetics
 + **Application elements** - Used good contrast and white space to make it easy to use
 + **Application text content** - Text content wraps when the window gets too tight and all the text is a consistent font
 + **Application images** - Images are centered even when page changes
++ 
+
+## JavaScript Deliverable
+For this deliverable, I added functionality to my website
++ **Login** - When you press login, it changes the word to your name (indicating you've logged in)
++ **Database data** - 
++ **WebSocket data** - 
++ **Interaction logic** - 
