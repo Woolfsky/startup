@@ -361,3 +361,225 @@ console.log(obj, json, objFromJson);
 // {a: 2, b: 'crockford'}
 ```
 
+
+#### RegEx
+Regular expressions are built into JS. You can create a regular expression using the class constructor or a regular expression literal.
+
+```js
+const objRegex = new RegExp('ab*', 'i');
+const literalRegex = /ab*/i;
+```
+
+The `string` class has several functions that accept regular expressions. This includes `match`, `replace`, `search`, and `split`.
+
+```js
+const petRegex = /(dog)|(cat)|(bird)/gim;
+const text = 'Both cats and dogs are pets, but not rocks.';
+
+text.match(petRegex);
+// RETURNS: ['cat', 'dog']
+
+text.replace(petRegex, 'animal');
+// RETURNS: Both animals and animals are pets, but not rocks.
+
+petRegex.test(text);
+// RETURNS: true
+```
+
+#### Rest
+If you want to pass in an arbitrate number of parameters, you can use a `rest` parameter, denoted by three dots. The `rest` parameter needs to be the last parameter in the function signature.<br>
+
+
+```js
+function hasNumber(test, ...numbers) {
+  return numbers.some((i) => i === test);
+}
+
+hasNumber(2, 1, 2, 3);
+// RETURNS: true
+```
+
+
+#### Exceptions
+JS uses the normal `try`, `catch`, `finally`, and `throw` syntax. If an exception is `thrown` in the `try` block, the interpreter will skip the rest of the `try` block and go to the `catch` block. Regardless of whether or not an exception is caught, the `finally` code will run.<br>
+
+
+```js
+try {
+  // normal execution code
+  let x = 1;
+  if (x === 1) {
+    throw new Error("This is a custom error message.");
+  }
+} catch (error) {
+  // exception handling code
+  console.error("An error occurred: " + error.message);
+} finally {
+  // always called code
+  console.log("This happens no matter what")
+}
+```
+
+#### Destructuring
+Destructuring is when you pull out elements of an object or array, and storing them as new variables.<br>
+E.g., `const a = [1, 2, 4, 5]; const [b, c] = a; console.log(b, c); //output: 1, 2`
+
+
+#### JS Objects and Classes
+JS uses the term `object` to refer to both any object (Promise, Map, Object, Function, Date...) and then the `Object` object (key value pairs). You create an `Object` using the `new` keyword (`const obj = new Object({a:3})`). You can assign a value to a `property` (key) using the dot notation or bracket notation (`obj.name = 'Skyler' or obj[name] = 'Skyler'`). Keys need to be either a `string` or a `symbol` (i.e. 'name' and name are valid). Values can be any data type.<br>
+<br>
+Three important Object functions include `entries` (`Object.entries(obj)`) which outputs an array of key value pairs, `keys` (`Object.keys(obj)`) which outputs an array of keys, and `values` (`Object.values(obj)`) which outputs an array of values.<br>
+<br>
+Any function that returns an object is considered a constructor and can be invoked with the new operator.<br>
+<br>
+JS Objects have the `this` pointer so it can reference itself as part of an Object method (really just a key that has a function as a value).<br>
+<br>
+Classes can be used to define Objects. Class declarations look similar to declaring an object, but classes have an explicit constructor and assumed function declarations. `#` is used to make a class function or property private.
+
+
+```js
+class Person {
+  constructor(name) {
+    this.name = name;
+    this.#secretName = this.name + ' (secret shhhh!)';
+  }
+
+  log() {
+    console.log('My name is ' + this.name);
+  }
+}
+
+const p = new Person('Eich');
+p.log();
+// OUTPUT: My name is Eich
+```
+
+Inheritance can be used with classes by using the `extends` keyword in the class declaration. `super` is how you access or override parent class elements.
+
+```js
+class Employee extends Person {
+  constructor(name, position) {
+    super(name);
+    this.position = position;
+  }
+
+  print() {
+    return super.print() + '. I am a ' + this.position;
+  }
+}
+```
+
+`static` functions and attributes for a class are only accessible to the class, not the instances of that class.
+`get` and `set` functions are methods within a class where you formally set or get a (usually private) attribute of a class instance.
+`super()` is how you call the parent class constructor (essentially `__init__`) in python.
+
+#### Scope
+JS uses scope to determine which variables are visible in different situations:
+- Global - Visible to all code (`this` in global scope is the window)
+- Module - Visible to all code running in a module
+- Function - Visible within a function
+- Block - Visible within a block of code delimited by curly braces
+
+A closure is defined as a function and its surrounding state. When an object creates a function, that function has access to the object's `this` pointer. When an object *creates* an arrow function, that arrow function has access to the global `this` (assuming it's called in the global scope. However, when an object *returns* an arrow function, that arrow function has access to the object's `this`.
+
+#### Document Object Model (DOM)
+You can **access** the DOM through the `document` variable in JS. `document` is the root node of the DOM. Every element in the DOM is a node. The `.children` method of a node is a list of the child elements. `document.querySelectorAll('p')` lets you interact with all the `p` elements in the DOM. `.textContent` is all the text in the element. `innerHTML` is a textual representation of the node's html.<br>
+<br>
+You can **manipulate** the DOM using `document` too. First, make the object, then append it to an existing item in the DOM:<br>
+
+```js
+function insertChild(parentSelector, text) {
+  const newChild = document.createElement('div');
+  newChild.textContent = text;
+
+  const parentElement = document.querySelector(parentSelector);
+  parentElement.appendChild(newChild);
+}
+
+insertChild('#courses', 'new course');
+```
+
+Similar to `.appendChild`, `.removeChild` removes an element.<br>
+<br>
+You can *inject* entire blocks of HTML code in the DOM using `innerHTML`:
+
+```js
+const el = document.querySelector('div');
+el.innerHTML = '<div class="injected"><b>Hello</b>!</div>';
+```
+
+Note, injecting HTML is often a route taken by hackers so be careful.<br>
+<br>
+**Event listeners** can be added in these two ways:<br>
+
+```js
+const submitDataEl = document.querySelector('#submitData');
+submitDataEl.addEventListener('click', function (event) {
+  console.log(event.type);
+});
+```
+
+```html
+<button onclick='alert("clicked")'>click me</button>
+```
+
+**Local storage** can be used to store information across user sessions and different HTML pages. There are four main methods that can be used with localStorage:
+
+| Function             | Meaning                                      |
+| -------------------- | -------------------------------------------- |
+| .setItem(name, value) | Sets a named item's value into local storage |
+| .getItem(name)        | Gets a named item's value from local storage |
+| .removeItem(name)     | Removes a named item from local storage      |
+| .clear()              | Clears all items in local storage            |
+
+
+**Promises** in JS are used to asynchronously run code in parallel with other code (but not actually at the same time). A `promise` can be in one of three states: pending, fulfilled, or rejected.
+
+```js
+const coinToss = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    if (Math.random() > 0.1) {
+      resolve(Math.random() > 0.5 ? 'heads' : 'tails');
+    } else {
+      reject('fell off table');
+    }
+  }, 10000);
+});
+```
+
+The `promise` object has three methods: then, catch, and finally. The then function is called if the promise is fulfilled, catch is called if the promise is rejected, and finally is always called after all the processing is completed:
+
+```js
+coinToss
+  .then((result) => console.log(`Coin toss result: ${result}`))
+  .catch((err) => console.log(`Error: ${err}`))
+  .finally(() => console.log('Toss completed'));
+
+// OUTPUT:
+//    Coin toss result: tails
+//    Toss completed
+```
+
+**Async/Await** is a better way than using promises. The `async` keyword declares that a function returns a promise. The `await` keyword wraps a call to the `async` function, blocks execution until the promise has resolved, and then returns the result of the promise. If you return an asynchronous function without prefixing it with `await`, it will just return a promise that is stuck in the *pending* state. By prefixing the asynchronous function with `await`, the execution of the function will be held up until it resolves to either *fulfilled* or *rejected*. You can convert between a promise structure of `.then`s and `.finally`s and the async `try`, `catch`, `finally` structure:
+
+**then/catch chain version**
+
+```js
+coinToss()
+  .then((result) => console.log(`Toss result ${result}`))
+  .catch((err) => console.error(`Error: ${err}`))
+  .finally(() => console.log(`Toss completed`));
+```
+
+**async, try/catch version**
+
+```js
+try {
+  const result = await coinToss();
+  console.log(`Toss result ${result}`);
+} catch (err) {
+  console.error(`Error: ${err}`);
+} finally {
+  console.log(`Toss completed`);
+}
+```
