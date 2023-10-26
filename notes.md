@@ -523,4 +523,40 @@ submitDataEl.addEventListener('click', function (event) {
 <button onclick='alert("clicked")'>click me</button>
 ```
 
+**Local storage** can be used to store information across user sessions and different HTML pages. There are four main methods that can be used with localStorage:
+
+| Function             | Meaning                                      |
+| -------------------- | -------------------------------------------- |
+| .setItem(name, value) | Sets a named item's value into local storage |
+| .getItem(name)        | Gets a named item's value from local storage |
+| .removeItem(name)     | Removes a named item from local storage      |
+| .clear()              | Clears all items in local storage            |
+
+
+**Promises** in JS are used to asynchronously run code in parallel with other code (but not actually at the same time). A `promise` can be in one of three states: pending, fulfilled, or rejected.
+
+```js
+const coinToss = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    if (Math.random() > 0.1) {
+      resolve(Math.random() > 0.5 ? 'heads' : 'tails');
+    } else {
+      reject('fell off table');
+    }
+  }, 10000);
+});
+```
+
+The `promise` object has three methods: then, catch, and finally. The then function is called if the promise is fulfilled, catch is called if the promise is rejected, and finally is always called after all the processing is completed:
+
+```js
+coinToss
+  .then((result) => console.log(`Coin toss result: ${result}`))
+  .catch((err) => console.log(`Error: ${err}`))
+  .finally(() => console.log('Toss completed'));
+
+// OUTPUT:
+//    Coin toss result: tails
+//    Toss completed
+```
 
