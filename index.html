@@ -48,18 +48,42 @@
 
             <!-- Login -->
             <div class="col-md-1 text-center">
-                <button type="button" class="btn btn-outline-secondary">Login</button>
-              </div>
+                <!-- Button -->
+                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-target="#exampleModalCenter">Login</button>
+            
+            
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Modal body text goes here.</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+            
 
             <hr />
         </header>
     
     <!---- Body ---->
     <main>
-    
         <h2 class="my_cards" style="text-align: left;">My Cards</h2>
 
-        <input type="button" value="New Card" class="btn btn-secondary"> 
+        <input type="button" value="New Card" class="btn btn-secondary" onclick="newCard()"> 
         <hr />
 
         <!-- Cards -->
@@ -163,8 +187,8 @@
         <span>Creator's GitHub can be found</span> <a href="https://github.com/Woolfsky/startup/tree/main">here</a>
         
     </footer>
-
-
+    <!-- JavaSript -->
+    <script src="tasks.js"></script>
   </body>
 
 </html>
