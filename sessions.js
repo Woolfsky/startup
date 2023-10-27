@@ -34,23 +34,23 @@ class Card {
     }
 }
 
-
-// Function to load and display cards on page load
-function loadAndDisplayCards() {
-    const storedUsername = localStorage.getItem('page_username');
+// Function to load task titles into the dropdown
+function loadTaskTitles() {
+    const storedUsername = localStorage.getItem("page_username");
     if (storedUsername) {
-        const user = JSON.parse(localStorage.getItem(storedUsername));
-        if (user && user.tasks) {
-            const cardsContainer = document.querySelector('.cards_container');
-            cardsContainer.innerHTML = ''; // Clear existing cards
-
-            user.tasks.forEach((task) => {
-                const card = createCardElement_sessions(task);
-                cardsContainer.appendChild(card);
-            });
-        }
+      const user = JSON.parse(localStorage.getItem(storedUsername));
+      if (user && user.tasks) {
+        user.tasks.forEach((task) => {
+          const option = document.createElement("option");
+          option.value = task.title;
+          option.textContent = task.title;
+          taskSelect.appendChild(option);
+        });
+      }
     }
-}
+  }
+
+loadTaskTitles()
 
 // Function to create a card element
 function createCardElement_sessions(card) {
@@ -114,43 +114,29 @@ function createCardElement_sessions(card) {
     return cardDiv;
 }
 
-
-
-// Function to add a new task to a card
-function addNewTask(cardElement) {
-    const taskList = cardElement.querySelector('.list-group');
-    const taskItem = document.createElement('li');
-    taskItem.classList.add('list-group-item');
-    taskItem.innerHTML = `
-        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-        <span contenteditable>New task</span>
-    `;
-
-    taskList.appendChild(taskItem);
-    saveCardChanges_sessions();
-
-    // Prevent the default behavior of the anchor link
-    event.preventDefault();
-}
-
-
-
-
-// Function to add a new card
-function newCard() {
-    const newCard = new Card();
-    const storedUsername = localStorage.getItem('page_username');
-    const user = JSON.parse(localStorage.getItem(storedUsername));
-
-    if (user && user.tasks) {
-        user.tasks.push(newCard);
-    } else {
-        user.tasks = [newCard];
+// Function to display the selected task card
+function displaySelectedTask_sessions() {
+    const selectedTitle = taskSelect.value;
+    const storedUsername = localStorage.getItem("page_username");
+    if (selectedTitle !== "default" && storedUsername) {
+      const user = JSON.parse(localStorage.getItem(storedUsername));
+      if (user && user.tasks) {
+        const selectedTask = user.tasks.find((task) => task.title === selectedTitle);
+        if (selectedTask) {
+          // Create a card element for the selected task
+          const cardElement = createCardElement_sessions(selectedTask);
+          // Clear the previous card and add the new one
+          const cardsContainer = document.querySelector(".cards_container");
+          cardsContainer.innerHTML = "";
+          cardsContainer.appendChild(cardElement);
+        }
+      }
     }
+  }
 
-    localStorage.setItem(storedUsername, JSON.stringify(user));
-    loadAndDisplayCards();
-}
+document.getElementById('taskSelect').addEventListener('change', function () {
+    displaySelectedTask_sessions();
+})
 
 // Function to save card changes
 function saveCardChanges_sessions() {
@@ -159,42 +145,63 @@ function saveCardChanges_sessions() {
 
     if (user && user.tasks) {
         const cards = document.querySelectorAll('.card');
-        user.tasks = [];
+        
+        // Create a new array to store the updated tasks
+        const updatedTasks = [];
 
         cards.forEach((cardElement) => {
-            const title = cardElement.querySelector('h5').textContent;
-            const taskItems = cardElement.querySelectorAll('li');
-            const taskList = Array.from(taskItems).map((item) => {
-                const checkbox = item.querySelector('input[type="checkbox"]');
-                const text = item.querySelector('span').textContent;
-                return { text, checked: checkbox.checked };
-            });
+            const titleElement = cardElement.querySelector('h5');
+            if (titleElement) {
+                const title = titleElement.textContent;
+                const taskItems = cardElement.querySelectorAll('li');
+                const taskList = Array.from(taskItems).map((item) => {
+                    const checkbox = item.querySelector('input[type="checkbox"]');
+                    const textElement = item.querySelector('span');
+                    if (checkbox && textElement) {
+                        const text = textElement.textContent;
+                        return { text, checked: checkbox.checked };
+                    }
+                });
 
-            user.tasks.push(new Card(title, taskList));
+                // Find the existing task in user.tasks and update it
+                const existingTask = user.tasks.find((task) => task.title === title);
+
+                if (existingTask) {
+                    existingTask.list = taskList;
+                } else {
+                    // If the task doesn't exist, add it to the updatedTasks array
+                    updatedTasks.push(new Card(title, taskList));
+                }
+            }
         });
+
+        // Concatenate the existing tasks with the updated tasks
+        user.tasks = [...user.tasks, ...updatedTasks];
 
         localStorage.setItem(storedUsername, JSON.stringify(user));
     }
 }
+
+// Function to add a new task to a card
+function addNewTask(cardElement) {
+    const taskList = cardElement.querySelector('.list-group');
+    if (taskList) {
+        const taskItem = document.createElement('li');
+        taskItem.classList.add('list-group-item');
+        taskItem.innerHTML = `
+            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+            <span contenteditable>New task</span>
+        `;
+
+        taskList.appendChild(taskItem);
+        saveCardChanges_sessions();
+    }
+}
+
+
 
 
 // Attach the "Save Changes" function to the card container
 const cardsContainer = document.querySelector('.cards_container');
 cardsContainer.addEventListener('input', saveCardChanges_sessions);
 
-// Load and display cards on page load
-loadAndDisplayCards();
-
-// Add an event listener to update the UI when changes occur
-window.addEventListener('storage', (event) => {
-    if (event.key === 'page_username') {
-        // Username changed; update login button
-        loadPage();
-    } else if (event.key === localStorage.getItem('page_username')) {
-        // User's data (including tasks) changed; update tasks UI
-        loadAndDisplayCards();
-    }
-});
-
-// Call the function to load and display tasks when the page loads
-loadAndDisplayCards();

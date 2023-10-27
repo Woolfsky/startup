@@ -95,12 +95,9 @@
         <!-- Sessions -->
         <div>
           <div>
-            <label>Select Task Card:</label>
-            <select>
-                <option value="CS260">CS260</option>
-                <option value="CS236">CS236</option>
-                <option value="Reading">Reading 20 min/day</option>
-                <option value="Exercise">Exercise daily</option>
+            <label>Session Task:</label>
+            <select id="taskSelect">
+              <option value="default">Select Task Card</option>
             </select>
           </div>
           <br>
@@ -108,56 +105,37 @@
             <label>Session length (mins):</label><input type="number" value="25">
           </div>
         </div>
-        
-
-        
 
         <br>
         <br>
-
-        <!-- Selected card -->
         
-          <div class="cards_container" style="gap: 100px;">
-            <div class="card" style="width: 25rem;">
-                <div class="card-body">
-                <h5 class="card-title">CS260</h5>
-                <p class="card-text">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                        Finish this assignment
-                        </li>
-                        <li class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                        Finish the next assignment
-                        </li>
-                        <li class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                        Third checkbox
-                        </li>
-                        <li class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                        Finish all the assignments
-                        </li>
-                    </ul>
-                </p>
-                <a href="#" class="btn btn-outline-secondary">+</a>
-                </div>
+
+        <div class="cards_and_timer_container" style="gap: 100px;">
+
+            <!-- Selected card -->
+            <div class="cards_container" style="gap: 100px;">
+                  <div class="card" style="width: 25rem;">
+                    <div class="card-body">
+                    <h5 style="text-align: center; color: #888;">Select a card to view from the dropdown menu</h5>
+                    </div>
+                  </div>
             </div>
 
-          <!-- Session timer -->
+            <!-- Session timer -->
             <div>
               <div class="card" style="width: 20rem; align-content: center;">
                 <img src="https://media.istockphoto.com/id/904475088/vector/stopwatch-icon.jpg?s=612x612&w=0&k=20&c=SM0DKmmrYfJKdGoVrhXuk8cMlvlXpt5ExROqr-QEN4w=" alt="picture of clock" width="300">
                 <br>
                 <div style="justify-content: center; display:flex; gap: 5px;">
-                  <button class="btn btn-outline-success">Start</button> <button class="btn btn-outline-danger">Stop</button> <button class="btn btn-outline-secondary">Reset</button>
+                  <button class="btn btn-outline-success">Start</button> 
+                  <button class="btn btn-outline-danger">Stop</button> 
+                  <button class="btn btn-outline-secondary">Reset</button>
                 </div>
               </div>
             </div>
+            
+          </div>
 
-
-        </div>
 
         <br>
         <br>
@@ -171,10 +149,7 @@
     </footer>
 
     <!-- JavaSript -->
-    <!-- <script src="tasks.js"></script>
-    <script>
-      loadPage();
-    </script> -->
+    <script src="sessions.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
