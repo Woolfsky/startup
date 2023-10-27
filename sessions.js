@@ -63,7 +63,7 @@ function createCardElement_sessions(card) {
 
     // Title
     const title = document.createElement('h5');
-    title.contentEditable = true;
+    title.contentEditable = false;
     title.textContent = card.title;
 
     // Task list
@@ -203,5 +203,7 @@ function addNewTask(cardElement) {
 
 // Attach the "Save Changes" function to the card container
 const cardsContainer = document.querySelector('.cards_container');
-cardsContainer.addEventListener('input', saveCardChanges_sessions);
+// cardsContainer.addEventListener('input', saveCardChanges_sessions);
+
+
 
