@@ -87,3 +87,7 @@ main div {
     margin-right: auto;
     width: 100%;
 }
+
+.plus-button {
+    border-color: #ccc; /* Light gray border color */
+}
