@@ -24,6 +24,8 @@ function loadPage() {
     if (storedUsername) { document.getElementById('login_button').textContent = storedUsername; }
 }
 
+loadPage();
+
 
 class Card {
     constructor(title, list) {
@@ -160,6 +162,3 @@ cardsContainer.addEventListener('input', saveCardChanges);
 
 // Load and display cards on page load
 loadAndDisplayCards();
-
-
-
