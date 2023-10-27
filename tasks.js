@@ -30,9 +30,10 @@ loadPage();
 class Card {
     constructor(title, list) {
         this.title = title || '[Add title]';
-        this.list = list || ['New task'];
+        this.list = list || [{ text: 'New task', checked: false }];
     }
 }
+
 
 // Function to load and display cards on page load
 function loadAndDisplayCards() {
@@ -69,13 +70,28 @@ function createCardElement(card) {
     const taskList = document.createElement('ul');
     taskList.classList.add('list-group');
 
-    card.list.forEach((taskText, index) => {
+    card.list.forEach((task, index) => {
         const taskItem = document.createElement('li');
         taskItem.classList.add('list-group-item');
-        taskItem.innerHTML = `
-            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-            <span contenteditable>${taskText}</span>
-        `;
+
+        const checkbox = document.createElement('input');
+        checkbox.classList.add('form-check-input', 'me-1');
+        checkbox.type = 'checkbox';
+        checkbox.value = '';
+        checkbox.checked = task.checked;
+
+        const taskText = document.createElement('span');
+        taskText.contentEditable = true;
+        taskText.textContent = task.text;
+
+        // Attach an event listener to the checkbox to update the task's completion status
+        checkbox.addEventListener('change', () => {
+            task.checked = checkbox.checked;
+            saveCardChanges();
+        });
+
+        taskItem.appendChild(checkbox);
+        taskItem.appendChild(taskText);
 
         taskList.appendChild(taskItem);
     });
@@ -97,6 +113,7 @@ function createCardElement(card) {
 
     return cardDiv;
 }
+
 
 
 // Function to add a new task to a card
@@ -146,8 +163,12 @@ function saveCardChanges() {
 
         cards.forEach((cardElement) => {
             const title = cardElement.querySelector('h5').textContent;
-            const taskItems = cardElement.querySelectorAll('li span');
-            const taskList = Array.from(taskItems).map((item) => item.textContent);
+            const taskItems = cardElement.querySelectorAll('li');
+            const taskList = Array.from(taskItems).map((item) => {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                const text = item.querySelector('span').textContent;
+                return { text, checked: checkbox.checked };
+            });
 
             user.tasks.push(new Card(title, taskList));
         });
@@ -155,6 +176,7 @@ function saveCardChanges() {
         localStorage.setItem(storedUsername, JSON.stringify(user));
     }
 }
+
 
 // Attach the "Save Changes" function to the card container
 const cardsContainer = document.querySelector('.cards_container');
