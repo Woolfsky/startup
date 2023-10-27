@@ -13,9 +13,8 @@ Accomplishing all of your tasks this week starts with effective organization, an
 
 ### Key features
 + Secure login through HTTPS
-+ Ability to add, organize, prioritize, and assign weights to tasks (i.e. how many Pomodoro sessions)
-+ Work session (Pomodoro) page with session timer
-+ Current habits and streaks page
++ Task organization page
++ Work session (Pomodoro) page with session timer to work on those tasks
 + Community page to post helpful tips and share accomplishments/streaks
 + Notifications when an item has been on a to-do list for a long time
 + Buttons with various functionalities
@@ -32,14 +31,14 @@ I will use the required technologies in the following way:<br>
 
 ## HTML Deliverable
 For this deliverable, I built out the structure of my website using HTML
-+ **HTML pages** — Four pages were built out, each a key element of my server (*Tasks* displays all current to-do list styled task cards, *Habits* displays the current habits the user is tracking along with their streaks, *Sessions* is a page in which the user can start focus sessions using the Pomodoro Method, *Community* is a page where helpful tips can be shared by other users)
++ **HTML pages** — Three pages were built out, each a key element of my server (*Tasks* displays all current to-do list styled task cards, *Sessions* is a page in which the user can start focus sessions using the Pomodoro Method, *Community* is a page where helpful tips can be shared by other users)
 + **Head icon** — I used [favicon.io](https://favicon.io/) to design a logo for *focus* and linked it in the head element
 + **Menu links** — Each page has a menu in the header; the menu enables the user to navigate throughout the services
 + **Textual content** — *Community* page begins with some text content about general study tips
 + **Placeholder** — The *Sessions* page will have a working timer for sessions (brought in with a 3rd party service call), but a picture is there for now
 + **Images** — *Community* page has a landscape picture at the top
 + **Login** — Input box and a submit button (button functionality will come later)
-+ **DB data** — Task and habit cards will display saved data for each user (I hard-coded the values for now)
++ **DB data** — Task cards will display saved data for each user (I hard-coded the values for now)
 + **WebSocket** — The *Community* page will display live comments and tips from other users (I hard-coded the values for now)
 
 ## CSS Deliverable
@@ -50,11 +49,10 @@ For this deliverable, I styled the application to the desired aesthetics
 + **Application elements** - Used good contrast and white space to make it easy to use
 + **Application text content** - Text content wraps when the window gets too tight and all the text is a consistent font
 + **Application images** - Images are centered even when page changes
-+ 
 
 ## JavaScript Deliverable
 For this deliverable, I added functionality to my website
-+ **Login** - When you press login, it changes the word to your name (indicating you've logged in)
-+ **Database data** - 
++ **Login** - When a user presses login, a login prompt appears; when they enter info and press continue, it adds their info to the localStorage and displays the user's name (indicating they've logged in)
++ **Database data** - I used JS to store user information (i.e., all of their task cards) and then to update them in localStorage when they make changes (imitating a database)
 + **WebSocket data** - 
-+ **Interaction logic** - 
++ **Interaction logic** - Users can edit tasks on the *Tasks* page and then open up those tasks in the *Sessions* page and see the changes updates (using localStorage)
