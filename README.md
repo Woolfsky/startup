@@ -54,5 +54,5 @@ For this deliverable, I styled the application to the desired aesthetics
 For this deliverable, I added functionality to my website
 + **Login** - When a user presses login, a login prompt appears; when they enter info and press continue, it adds their info to the localStorage and displays the user's name (indicating they've logged in)
 + **Database data** - I used JS to store user information (i.e., all of their task cards) and then to update them in localStorage when they make changes (imitating a database)
-+ **WebSocket data** - I made a community forum chat for posting useful tips. The chat is stored in localStorage, but will be transferred to a database.
++ **WebSocket data** - I made a community forum chat for posting useful tips. The chat is stored in localStorage, but will be transferred to a database
 + **Interaction logic** - Users can edit tasks on the *Tasks* page and then open up those tasks in the *Sessions* page and see the changes (using localStorage)
