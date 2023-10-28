@@ -91,3 +91,7 @@ main div {
 .plus-button {
     border-color: #ccc; /* Light gray border color */
 }
+
+.chat-messages div {
+    color:red;
+}
