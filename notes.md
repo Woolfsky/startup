@@ -82,8 +82,6 @@ Child elements inherit the rules of their parent elements all the way up. Rules 
 The box model is how CSS holds everything. From smallest to largest is content (text/images) > padding (inherits background color) > border (color/thickness/line stype) > margin (only represents whitespace)<br>
 
 
-![CSS box model](cssBoxModel.jpg)
-
 <br>
 
 **CSS Selectors** are used to cascade the style down throughout the document:
