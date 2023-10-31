@@ -41,7 +41,7 @@ Hyperlinks are represented with an `a` tag with the link to the other page in th
 <br>
 Comments: `<!-- commented text -->`<br>
 <br>
-When rendering and working with HTML, adding a CSS border rule can make formatting easier:<br>
+When rendering and working with HTML, adding a  border rule can make formatting easier:<br>
 `* {font-family: Arial; border: medium dashed #e3d5c2; padding: 0.25em; margin: 0.25em;}`<br>
 <br>
 Inputs are a way for the user to interact with the page. You specify the `type` of input. Here is an example:<br>
@@ -80,6 +80,9 @@ Within a single element using the `style` tag (highest precedence), as a `<style
 Child elements inherit the rules of their parent elements all the way up. Rules can be overridden by the child elements if desired.<br>
 <br>
 The box model is how CSS holds everything. From smallest to largest is content (text/images) > padding (inherits background color) > border (color/thickness/line stype) > margin (only represents whitespace)<br>
+
+
+![CSS box model](cssBoxModel.jpg)
 
 <br>
 
