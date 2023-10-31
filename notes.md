@@ -39,6 +39,17 @@ Your main html file (wherever you want the user to initially land) should be tit
 Hyperlinks are represented with an `a` tag with the link to the other page in the `href` attribute:<br>
 `<a href="https://byu.edu">Go to the Y</a>`<br>
 <br>
+
+The following code is how you would display an image with a hyperlink:
+
+
+```html
+<a href="https://www.example.com">
+  <img src="image.jpg" alt="Description of the image">
+</a>
+```
+
+
 Comments: `<!-- commented text -->`<br>
 <br>
 When rendering and working with HTML, adding a  border rule can make formatting easier:<br>
@@ -81,6 +92,7 @@ Child elements inherit the rules of their parent elements all the way up. Rules 
 <br>
 The box model is how CSS holds everything. From smallest to largest is content (text/images) > padding (inherits background color) > border (color/thickness/line stype) > margin (only represents whitespace)<br>
 
+Note, that padding controls the spacing within and element (between the content and its border) while margin controls the spacing between elements.<br>
 
 <br>
 
@@ -105,6 +117,7 @@ Attribute selectors allow you to select elements based upon their attributes: `p
 `section:hover` assigns a rule to wherever your mouse is hovering
 <br>
 
+
 <br>
 
 There are many **units** that can be used in CSS rules. Here is a list of commonly used units:
@@ -126,6 +139,16 @@ There are many **units** that can be used in CSS rules. Here is a list of common
 
 **Color** values can be described from keywords (`red`), RGB hex codes (`#00FFAA22`), RGB functions (`rgb(128, 255, 128, 0.5)`), and HSL functions (`hsl(180, 30%, 90%, 0.5)`).
 <br>
+The following code would make all the div elements have a red background:<br>
+
+
+```js
+div {
+  background-color: red;
+}
+```
+
+
 <br>
 
 **Fonts** can be changed in a CSS rule through the `font-family` property. The four major font families include `Serif`, `sans-serif`, `fixed`, and `symbol`. `fixed` means all letters are the same size, and `symbol` represents things like emojis. <br>
@@ -185,7 +208,7 @@ The CSS `display` lets you change how something is displayed in a browser:<br>
 + `none` doesn't display the element (though it's still technically there)
 + `block` fills the width of the parent element (`p` and `div` default to this)
 + `inline` is only as big as the object (`b` and `span` defaults to this)
-+ `flex` displays the children in a flexible orientation
++ `flex` displays the children in a flexible orientation (distributes them evenly on an axis, either col or row)
 + `grid` displays the children in a grid
 
 Placing this tag in the `head` element will prevent the browser from scaling the site for you based on the screen size and orientation:<br>
@@ -315,6 +338,51 @@ You can also use the ternary operator. This provides a compact `if else` represe
 ```js
 a === 1 ? console.log(1) : console.log('not 1');
 ```
+
+You can also use JS to change the style of elements in the HTML:<br>
+
+```js
+var element = document.getElementById("byu");
+
+// Change the text color to green
+element.style.color = "green";
+```
+
+The following is valid JavaScript syntax for if, else, for, while, and switch statements:<br>
+
+```js
+var age = 25;
+if (age >= 18) {
+    console.log("You are an adult.");
+} else {
+    console.log("You are not yet an adult.");
+}
+
+for (var i = 0; i < 5; i++) {
+    console.log("Iteration " + i);
+}
+
+var count = 0;
+while (count < 3) {
+    console.log("Count: " + count);
+    count++;
+}
+
+var day = "Monday";
+switch (day) {
+    case "Monday":
+        console.log("It's the start of the workweek.");
+        break;
+    case "Friday":
+        console.log("It's almost the weekend.");
+        break;
+    default:
+        console.log("It's a regular day.");
+}
+
+
+```
+
 
 #### Functions
 This is how you declare a function:<br>
