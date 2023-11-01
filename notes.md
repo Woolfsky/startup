@@ -23,7 +23,9 @@ To deploy changes to Simon (or startup):
 Domain names are broken up into a subdomain, followed by a root domain. The root domain is made up of a secondary domain followed by a top domain:<br>
 `[subdomain.]*secondary.top`  ->  my.byu.edu ("my" is the subdomain, "byu.edu" is the root domain, "byu" is the secondary domain, and "edu" is the top domain)<br>
 <br>
-A DNS server is a domain name system. This system maps a domain name (like byu.edu) to an IP address (128.187.16.184).
+A DNS server is a domain name system. This system maps a domain name (like byu.edu) to an IP address (128.187.16.184).<br> <br>
+
+In DNS (Domain Name System), an A record (Address record) is used to map a domain name (e.g., example.com) to an IPv4 IP address (e.g., 192.0.2.1). A records are used to translate human-readable domain names into IP addresses. Note, an A record cannot directly point to another A record.
 
 ### Caddy/HTTPS/TLS/Web Certificates
 Caddy handles web certificates (necessary for HTTPS)<br>
@@ -31,6 +33,14 @@ Caddy acts as a gateway for Simon and startup requests (routes port 443 user to 
 <br>
 HTTPS (Secure Hypertext Transport Protocol) means a negotiation has taken place to encrypt the data (through TPS protocol) before transferring anything<br>
 You can watch the negotiation take place using the `curl` command with the `-v` (verbose) flag:<br>`curl -v -s https://byu.edu > /dev/null`
+<br>
+<br>
+Important ports to know:
++ Port 443: HTTPS (SSL/TLS-encrypted web traffic)
++ Port 80: HTTP (unencrypted web traffic)
++ Port 22: SSH (secure remote access)
+
+
 
 ### HTML
 Start each doc with `<!DOCTYPE html>` to tell the browser the doc type<br>
@@ -383,6 +393,19 @@ switch (day) {
 
 ```
 
+You can add new properties after making JS objects like this:<br>
+
+```js
+var person = {
+    firstName: "John",
+    lastName: "Doe"
+};
+
+person.age = 30; // Adding a new property 'age' to the 'person' object
+```
+
+
+
 
 #### Functions
 This is how you declare a function:<br>
@@ -652,3 +675,28 @@ try {
   console.log(`Toss completed`);
 }
 ```
+
+
+### Terminal
+
+Some helpful terminal commands include:
+
++ chmod: Change file permissions.
++ pwd (Print Working Directory): Display current directory.
++ cd (Change Directory): Change directory.ls (List): List files and directories.
++ vim: Open the Vim text editor.
++ nano: Open the Nano text editor.
++ mkdir (Make Directory): Create a new directory.
++ mv (Move): Rename or move files/directories.
++ rm (Remove): Delete files/directories.
++ man (Manual): Access command documentation.
++ ssh (Secure Shell): Connect to remote servers securely.
++ ps (Process Status): Display running processes.
++ wget: Download files from the internet.
++ sudo (Superuser Do): Execute commands with elevated privileges.
++ ssh: creates a remote shell session.
++ ls: lists items (when you run `ls -la`, you'll get a *long format*(l) listing of all files and directories in the current directory, including *hidden ones*(a))
+
++ 
+
+
