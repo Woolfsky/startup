@@ -697,6 +697,112 @@ Some helpful terminal commands include:
 + ssh: creates a remote shell session.
 + ls: lists items (when you run `ls -la`, you'll get a *long format*(l) listing of all files and directories in the current directory, including *hidden ones*(a))
 
-+ 
 
 
+### Web Services
+Rendering HTML, JS, CSS are all part of the `frontend` of the web server (things that happen just within the user's browser). When our frontend JS makes requests to other services on the internet, we use the `fetch` command. `fetch` requests are used for things like storing data persistently, providing security, running tasks, executing application logic you don't want the user to see, and communicating with other users. You can access web service `endpoints` or `APIs` with the fetch command. The functionality represents the `backend`. <br>
+<br>
+
+Uniform Resource Locator (**URL**) is the address of any web service, website, or piece of data (images, videos...). Here is how a URL is structured (note, only the scheme and the domain name are required):
+
+
+```yaml
+<scheme>://<domain name>:<port>/<path>?<parameters>#<anchor>
+
+https://byu.edu:443/cs/260/student?filter=accepted#summary
+```
+
+**Port** numbers allow a single device to support multiple protocols (e.g. HTTP, HTTPS, FTP, or SSH) as well as different types of services (e.g. search, document, or authentication).
+<br> <br>
+
+**HTTP** is how the web communicates. When a web client (e.g. a web browser) and a web server talk they exchange HTTP requests and responses. You can see this conversation with the `curl` command:
+
+```sh
+curl -v -s http://info.cern.ch/hypertext/WWW/Helping.html
+```
+
+An HTTP request has this syntax:
+
+```yaml
+<verb> <url path, parameters, anchor> <version>
+[<header key: value>]*
+[
+
+  <body>
+]
+```
+
+For example:
+
+```http
+GET /hypertext/WWW/Helping.html HTTP/1.1
+Host: info.cern.ch
+Accept: text/html
+```
+
+An HTTP response has the following syntax.
+
+```yaml
+<version> <status code> <status string>
+[<header key: value>]*
+[
+
+  <body>
+]
+```
+
+For example:
+
+```yaml
+HTTP/1.1 200 OK
+Date: Tue, 06 Dec 2022 21:54:42 GMT
+Server: Apache
+Last-Modified: Thu, 29 Oct 1992 11:15:20 GMT
+ETag: "5f0-28f29422b8200"
+Accept-Ranges: bytes
+Content-Length: 1520
+Connection: close
+Content-Type: text/html
+```
+
+
+**Verbs** are used in requests. Common verbs include `GET` (get the requested resource), `POST` (create a new resource), `PUT` (update the resource), `DELETE` (delete the resource), and `OPTIONS` (get metadata about the resource).<br>
+Status codes are part of the response. Here are the basic grouping:
+
+- 1xx - Informational.
+- 2xx - Success.
+- 3xx - Redirect to some other location, or that the previously cached resource is still valid.
+- 4xx - Client errors. The request is invalid.
+- 5xx - Server errors. The request cannot be satisfied due to an error on the server.
+
+Here are some specific, common responses:
+
+| Code | Text                                                                                 | Meaning                                                                                                                           |
+| ---- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| 100  | Continue                                                                             | The service is working on the request                                                                                             |
+| 200  | Success                                                                              | The requested resource was found and returned as appropriate.                                                                     |
+| 201  | Created                                                                              | The request was successful and a new resource was created.                                                                        |
+| 204  | No Content                                                                           | The request was successful but no resource is returned.                                                                           |
+| 304  | Not Modified                                                                         | The cached version of the resource is still valid.                                                                                |
+| 307  | Permanent redirect                                                                   | The resource is no longer at the requested location. The new location is specified in the response location header.               |
+| 308  | Temporary redirect                                                                   | The resource is temporarily located at a different location. The temporary location is specified in the response location header. |
+| 400  | Bad request                                                                          | The request was malformed or invalid.                                                                                             |
+| 401  | Unauthorized                                                                         | The request did not provide a valid authentication token.                                                                         |
+| 403  | Forbidden                                                                            | The provided authentication token is not authorized for the resource.                                                             |
+| 404  | Not found                                                                            | An unknown resource was requested.                                                                                                |
+| 408  | Request timeout                                                                      | The request takes too long.                                                                                                       |
+| 409  | Conflict                                                                             | The provided resource represents an out of date version of the resource.                                                          |                                                                               |
+| 429  | Too many requests                                                                    | The client is making too many requests in too short of a time period.                                                             |
+| 500  | Internal server error                                                                | The server failed to properly process the request.                                                                                |
+| 503  | Service unavailable                                                                  | The server is temporarily down. The client should try again with an exponential back off. 
+
+
+
+HTTP **headers** specify metadata about a request or response. This includes things like how to handle security, caching, data formats, and cookies. <br> <br>
+
+The format of the **body** of an HTTP request or response is defined by the Content-Type header. For example, it may be HTML text (text/html), a binary image format (image/png), JSON (application/json), or JavaScript (text/javascript).<br> <br>
+
+One common method for tracking state is the **cookie**. Cookies are generated by a server and passed to the client as an HTTP header. The client then caches the cookie and returns it as an HTTP header back to the server on subsequent requests.<br>
+<br>
+
+**Security**: `Same Origin Policy` (SOP) was created to only allows JavaScript to make requests to a domain if it is the same domain that the user is currently viewing. `Cross Origin Resource Sharing` (CORS) was invented to allow the client (e.g. browser) to specify the origin of a request and then let the server respond with what origins are allowed.
