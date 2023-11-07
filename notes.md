@@ -915,4 +915,15 @@ app.listen(port, function () {
 
 Then, open the terminal, navigate to the directory holding that file, and run `npm init -y` and `npm install express`. Then you can run the code and go to the browser and type in `localhost:8080`. You should be able to see the request object in your VS Code debugger. You can pass in more parameters in the browser search bar like `http://localhost:8080/fish/taco?order=2` and see them in the debugger. **Nodemon** is wrapper for Node that makes Node refresh everytime changes are saved in JS. See [this](https://github.com/webprogramming260/.github/blob/main/profile/webServices/debuggingNode/debuggingNode.md) page to learn how to install Nodemon. <br> <br>
 
+## PM2
+PM2 is a way to keep your web service running all the time in the background. It has already been configured for this project. Here is what you would do if you wanted to add a new subdomain to the website with a new web service:
+
++ Add the rule to the Caddyfile to tell it how to direct requests for the domain
++ Create a directory and add the files for the web service
++ Configure PM2 to host the web service
+
+A full description of each step can be found [here](https://github.com/webprogramming260/.github/blob/main/profile/webServices/pm2/pm2.md)
+
+## UI Testing
+**Playwright** is a great way to automate UI testing for your web app. [Here](https://github.com/webprogramming260/.github/blob/main/profile/webServices/uiTesting/uiTesting.md) is a page that describes how to install and test Playwright functionality.
 
