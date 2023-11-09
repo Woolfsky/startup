@@ -61,3 +61,22 @@ function populateChat() {
 }
 
 populateChat();
+
+
+function displayAdvice(data) {
+    fetch('https://api.adviceslip.com/advice')
+      .then((response) => response.json())
+      .then((data) => {
+        const containerEl = document.querySelector('#quote');
+  
+        const quoteEl = document.createElement('p');
+        quoteEl.classList.add('quote');
+  
+        quoteEl.textContent = data.slip.advice;
+        
+        containerEl.appendChild(quoteEl);
+      });
+  }
+
+displayAdvice();
+
