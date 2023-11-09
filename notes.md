@@ -23,7 +23,9 @@ To deploy changes to Simon (or startup):
 Domain names are broken up into a subdomain, followed by a root domain. The root domain is made up of a secondary domain followed by a top domain:<br>
 `[subdomain.]*secondary.top`  ->  my.byu.edu ("my" is the subdomain, "byu.edu" is the root domain, "byu" is the secondary domain, and "edu" is the top domain)<br>
 <br>
-A DNS server is a domain name system. This system maps a domain name (like byu.edu) to an IP address (128.187.16.184).
+A DNS server is a domain name system. This system maps a domain name (like byu.edu) to an IP address (128.187.16.184).<br> <br>
+
+In DNS (Domain Name System), an A record (Address record) is used to map a domain name (e.g., example.com) to an IPv4 IP address (e.g., 192.0.2.1). A records are used to translate human-readable domain names into IP addresses. Note, an A record cannot directly point to another A record.
 
 ### Caddy/HTTPS/TLS/Web Certificates
 Caddy handles web certificates (necessary for HTTPS)<br>
@@ -31,6 +33,14 @@ Caddy acts as a gateway for Simon and startup requests (routes port 443 user to 
 <br>
 HTTPS (Secure Hypertext Transport Protocol) means a negotiation has taken place to encrypt the data (through TPS protocol) before transferring anything<br>
 You can watch the negotiation take place using the `curl` command with the `-v` (verbose) flag:<br>`curl -v -s https://byu.edu > /dev/null`
+<br>
+<br>
+Important ports to know:
++ Port 443: HTTPS (SSL/TLS-encrypted web traffic)
++ Port 80: HTTP (unencrypted web traffic)
++ Port 22: SSH (secure remote access)
+
+
 
 ### HTML
 Start each doc with `<!DOCTYPE html>` to tell the browser the doc type<br>
@@ -39,9 +49,20 @@ Your main html file (wherever you want the user to initially land) should be tit
 Hyperlinks are represented with an `a` tag with the link to the other page in the `href` attribute:<br>
 `<a href="https://byu.edu">Go to the Y</a>`<br>
 <br>
+
+The following code is how you would display an image with a hyperlink:
+
+
+```html
+<a href="https://www.example.com">
+  <img src="image.jpg" alt="Description of the image">
+</a>
+```
+
+
 Comments: `<!-- commented text -->`<br>
 <br>
-When rendering and working with HTML, adding a CSS border rule can make formatting easier:<br>
+When rendering and working with HTML, adding a  border rule can make formatting easier:<br>
 `* {font-family: Arial; border: medium dashed #e3d5c2; padding: 0.25em; margin: 0.25em;}`<br>
 <br>
 Inputs are a way for the user to interact with the page. You specify the `type` of input. Here is an example:<br>
@@ -81,6 +102,8 @@ Child elements inherit the rules of their parent elements all the way up. Rules 
 <br>
 The box model is how CSS holds everything. From smallest to largest is content (text/images) > padding (inherits background color) > border (color/thickness/line stype) > margin (only represents whitespace)<br>
 
+Note, that padding controls the spacing within and element (between the content and its border) while margin controls the spacing between elements.<br>
+
 <br>
 
 **CSS Selectors** are used to cascade the style down throughout the document:
@@ -104,6 +127,7 @@ Attribute selectors allow you to select elements based upon their attributes: `p
 `section:hover` assigns a rule to wherever your mouse is hovering
 <br>
 
+
 <br>
 
 There are many **units** that can be used in CSS rules. Here is a list of commonly used units:
@@ -125,6 +149,16 @@ There are many **units** that can be used in CSS rules. Here is a list of common
 
 **Color** values can be described from keywords (`red`), RGB hex codes (`#00FFAA22`), RGB functions (`rgb(128, 255, 128, 0.5)`), and HSL functions (`hsl(180, 30%, 90%, 0.5)`).
 <br>
+The following code would make all the div elements have a red background:<br>
+
+
+```js
+div {
+  background-color: red;
+}
+```
+
+
 <br>
 
 **Fonts** can be changed in a CSS rule through the `font-family` property. The four major font families include `Serif`, `sans-serif`, `fixed`, and `symbol`. `fixed` means all letters are the same size, and `symbol` represents things like emojis. <br>
@@ -184,7 +218,7 @@ The CSS `display` lets you change how something is displayed in a browser:<br>
 + `none` doesn't display the element (though it's still technically there)
 + `block` fills the width of the parent element (`p` and `div` default to this)
 + `inline` is only as big as the object (`b` and `span` defaults to this)
-+ `flex` displays the children in a flexible orientation
++ `flex` displays the children in a flexible orientation (distributes them evenly on an axis, either col or row)
 + `grid` displays the children in a grid
 
 Placing this tag in the `head` element will prevent the browser from scaling the site for you based on the screen size and orientation:<br>
@@ -314,6 +348,64 @@ You can also use the ternary operator. This provides a compact `if else` represe
 ```js
 a === 1 ? console.log(1) : console.log('not 1');
 ```
+
+You can also use JS to change the style of elements in the HTML:<br>
+
+```js
+var element = document.getElementById("byu");
+
+// Change the text color to green
+element.style.color = "green";
+```
+
+The following is valid JavaScript syntax for if, else, for, while, and switch statements:<br>
+
+```js
+var age = 25;
+if (age >= 18) {
+    console.log("You are an adult.");
+} else {
+    console.log("You are not yet an adult.");
+}
+
+for (var i = 0; i < 5; i++) {
+    console.log("Iteration " + i);
+}
+
+var count = 0;
+while (count < 3) {
+    console.log("Count: " + count);
+    count++;
+}
+
+var day = "Monday";
+switch (day) {
+    case "Monday":
+        console.log("It's the start of the workweek.");
+        break;
+    case "Friday":
+        console.log("It's almost the weekend.");
+        break;
+    default:
+        console.log("It's a regular day.");
+}
+
+
+```
+
+You can add new properties after making JS objects like this:<br>
+
+```js
+var person = {
+    firstName: "John",
+    lastName: "Doe"
+};
+
+person.age = 30; // Adding a new property 'age' to the 'person' object
+```
+
+
+
 
 #### Functions
 This is how you declare a function:<br>
@@ -583,3 +675,255 @@ try {
   console.log(`Toss completed`);
 }
 ```
+
+
+### Terminal
+
+Some helpful terminal commands include:
+
++ chmod: Change file permissions.
++ pwd (Print Working Directory): Display current directory.
++ cd (Change Directory): Change directory.ls (List): List files and directories.
++ vim: Open the Vim text editor.
++ nano: Open the Nano text editor.
++ mkdir (Make Directory): Create a new directory.
++ mv (Move): Rename or move files/directories.
++ rm (Remove): Delete files/directories.
++ man (Manual): Access command documentation.
++ ssh (Secure Shell): Connect to remote servers securely.
++ ps (Process Status): Display running processes.
++ wget: Download files from the internet.
++ sudo (Superuser Do): Execute commands with elevated privileges.
++ ssh: creates a remote shell session.
++ ls: lists items (when you run `ls -la`, you'll get a *long format*(l) listing of all files and directories in the current directory, including *hidden ones*(a))
+
+
+
+### Web Services
+Rendering HTML, JS, CSS are all part of the `frontend` of the web server (things that happen just within the user's browser). When our frontend JS makes requests to other services on the internet, we use the `fetch` command. `fetch` requests are used for things like storing data persistently, providing security, running tasks, executing application logic you don't want the user to see, and communicating with other users. You can access web service `endpoints` or `APIs` with the fetch command. The functionality represents the `backend`. <br>
+<br>
+
+**Fetch** takes a URL and returns a promise. When the URL content is obtained, the `.then` methods are executed. If the returned content is of type `application/json` you can use the `json` function on the response object to convert it to a JavaScript object:
+
+
+```js
+fetch('https://api.quotable.io/random')
+  .then((response) => response.json())
+  .then((jsonResponse) => {
+    console.log(jsonResponse);
+  });
+```
+
+To do a `POST` request you populate the options parameter with the HTTP method and headers.
+
+```js
+fetch('https://jsonplaceholder.typicode.com/posts', {
+  method: 'POST',
+  body: JSON.stringify({
+    title: 'test title',
+    body: 'test body',
+    userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then((response) => response.json())
+  .then((jsonResponse) => {
+    console.log(jsonResponse);
+  });
+```
+
+
+
+Uniform Resource Locator (**URL**) is the address of any web service, website, or piece of data (images, videos...). Here is how a URL is structured (note, only the scheme and the domain name are required):
+
+
+```yaml
+<scheme>://<domain name>:<port>/<path>?<parameters>#<anchor>
+
+https://byu.edu:443/cs/260/student?filter=accepted#summary
+```
+
+**Port** numbers allow a single device to support multiple protocols (e.g. HTTP, HTTPS, FTP, or SSH) as well as different types of services (e.g. search, document, or authentication).
+<br> <br>
+
+**HTTP** is how the web communicates. When a web client (e.g. a web browser) and a web server talk they exchange HTTP requests and responses. You can see this conversation with the `curl` command:
+
+```sh
+curl -v -s http://info.cern.ch/hypertext/WWW/Helping.html
+```
+
+An HTTP request has this syntax:
+
+```yaml
+<verb> <url path, parameters, anchor> <version>
+[<header key: value>]*
+[
+
+  <body>
+]
+```
+
+For example:
+
+```http
+GET /hypertext/WWW/Helping.html HTTP/1.1
+Host: info.cern.ch
+Accept: text/html
+```
+
+An HTTP response has the following syntax.
+
+```yaml
+<version> <status code> <status string>
+[<header key: value>]*
+[
+
+  <body>
+]
+```
+
+For example:
+
+```yaml
+HTTP/1.1 200 OK
+Date: Tue, 06 Dec 2022 21:54:42 GMT
+Server: Apache
+Last-Modified: Thu, 29 Oct 1992 11:15:20 GMT
+ETag: "5f0-28f29422b8200"
+Accept-Ranges: bytes
+Content-Length: 1520
+Connection: close
+Content-Type: text/html
+```
+
+
+**Verbs** are used in requests. Common verbs include `GET` (get the requested resource), `POST` (create a new resource), `PUT` (update the resource), `DELETE` (delete the resource), and `OPTIONS` (get metadata about the resource).<br>
+Status codes are part of the response. Here are the basic grouping:
+
+- 1xx - Informational.
+- 2xx - Success.
+- 3xx - Redirect to some other location, or that the previously cached resource is still valid.
+- 4xx - Client errors. The request is invalid.
+- 5xx - Server errors. The request cannot be satisfied due to an error on the server.
+
+Here are some specific, common responses:
+
+| Code | Text                                                                                 | Meaning                                                                                                                           |
+| ---- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| 100  | Continue                                                                             | The service is working on the request                                                                                             |
+| 200  | Success                                                                              | The requested resource was found and returned as appropriate.                                                                     |
+| 201  | Created                                                                              | The request was successful and a new resource was created.                                                                        |
+| 204  | No Content                                                                           | The request was successful but no resource is returned.                                                                           |
+| 304  | Not Modified                                                                         | The cached version of the resource is still valid.                                                                                |
+| 307  | Permanent redirect                                                                   | The resource is no longer at the requested location. The new location is specified in the response location header.               |
+| 308  | Temporary redirect                                                                   | The resource is temporarily located at a different location. The temporary location is specified in the response location header. |
+| 400  | Bad request                                                                          | The request was malformed or invalid.                                                                                             |
+| 401  | Unauthorized                                                                         | The request did not provide a valid authentication token.                                                                         |
+| 403  | Forbidden                                                                            | The provided authentication token is not authorized for the resource.                                                             |
+| 404  | Not found                                                                            | An unknown resource was requested.                                                                                                |
+| 408  | Request timeout                                                                      | The request takes too long.                                                                                                       |
+| 409  | Conflict                                                                             | The provided resource represents an out of date version of the resource.                                                          |                                                                               |
+| 429  | Too many requests                                                                    | The client is making too many requests in too short of a time period.                                                             |
+| 500  | Internal server error                                                                | The server failed to properly process the request.                                                                                |
+| 503  | Service unavailable                                                                  | The server is temporarily down. The client should try again with an exponential back off. 
+
+
+
+HTTP **headers** specify metadata about a request or response. This includes things like how to handle security, caching, data formats, and cookies. <br> <br>
+
+The format of the **body** of an HTTP request or response is defined by the Content-Type header. For example, it may be HTML text (text/html), a binary image format (image/png), JSON (application/json), or JavaScript (text/javascript).<br> <br>
+
+One common method for tracking *state* is the **cookie**. Cookies are generated by a server and passed to the client as an HTTP header. The client then caches the cookie and returns it as an HTTP header back to the server on subsequent requests.<br>
+<br>
+
+**Security**: `Same Origin Policy` (SOP) was created to only allows JavaScript to make requests to a domain if it is the same domain that the user is currently viewing. `Cross Origin Resource Sharing` (CORS) was invented to allow the client (e.g. browser) to specify the origin of a request and then let the server respond with what origins are allowed.
+
+
+## Node.js
+Node.js runs Chrome's V8 engine outside of a browser. You need to install Node.js in both your prod and dev environments. This is done through the `Node Version Manager` (NVM). You can execute a line of JavaScript with Node.js from your console with the `-e` parameter.
+
+```sh
+➜  node -e "console.log(1+1)"
+2
+```
+
+You can execute a js file by typing `node my_file.js`. You can write and execute JS directly by using node's interactive environment by typing `node` in the terminal (it acts like typing `python3` in the terminal).<br> <br>
+
+To load a package using Node.js you must take two steps. First install the package locally on your machine using the `Node Package Manager` (NPM), and then include a `require` statement in your code that references the package name. NPM is automatically installed when you install Node.js. Before you start using NPM to install packages you need to initialize your code to use NPM. Create a new directory that will hold all your js, navigate there, and run the `npm init -y` function:
+
+```sh
+➜  mkdir npmtest
+➜  cd npmtest
+➜  npm init -y
+```
+
+You can then install new packages using this syntax: `npm install <package name>`, e.g., `npm install give-me-a-joke`. As you add more and more packages, the directory `node_modules` will get very large. Make sure you include n`ode_modules` in your `.gitignore` file so it's not copied every time!<br><br>
+
+In summary,
+
+1. Create your project directory
+2. Initialize it for use with NPM by running `npm init -y`
+3. Make sure `.gitignore` file contains `node_modules`
+4. Install any desired packages with `npm install <package name here>`
+5. Add `require('<package name here>')` to your application's JavaScript
+6. Use the code the package provides in your JavaScript
+7. Run your code with `node index.js`
+
+## Express
+Express is a Node.js package that helps with:
++ Routing requests for service endpoints
++ Manipulating HTTP requests with JSON body content
++ Generating HTTP responses
++ Using middleware to add functionality
+
+You create an Express application by using NPM to install the Express package and then calling the `express` constructor to create the Express application and listen for HTTP requests on a desired port.
+
+```sh
+➜ npm install express
+```
+
+```js
+const express = require('express');
+const app = express();
+
+app.listen(8080);
+```
+
+You can then call all the HTTP verbs as methods to your `app` object.
+
+
+## Debugging Node.js in Browser
+Instead of using VS Code's Live Server functionality to test code, we can use a port and a browser to debug a Node.js web service. Here is an example:<br>
+<br>
+Create a new file called `main.js` and containing this:
+
+```js
+const express = require('express');
+const app = express();
+
+app.get('/*', (req, res) => {
+  res.send({ url: req.originalUrl });
+});
+
+const port = 8080;
+app.listen(port, function () {
+  console.log(`Listening on port ${port}`);
+});
+```
+
+Then, open the terminal, navigate to the directory holding that file, and run `npm init -y` and `npm install express`. Then you can run the code and go to the browser and type in `localhost:8080`. You should be able to see the request object in your VS Code debugger. You can pass in more parameters in the browser search bar like `http://localhost:8080/fish/taco?order=2` and see them in the debugger. **Nodemon** is wrapper for Node that makes Node refresh everytime changes are saved in JS. See [this](https://github.com/webprogramming260/.github/blob/main/profile/webServices/debuggingNode/debuggingNode.md) page to learn how to install Nodemon. <br> <br>
+
+## PM2
+PM2 is a way to keep your web service running all the time in the background. It has already been configured for this project. Here is what you would do if you wanted to add a new subdomain to the website with a new web service:
+
++ Add the rule to the Caddyfile to tell it how to direct requests for the domain
++ Create a directory and add the files for the web service
++ Configure PM2 to host the web service
+
+A full description of each step can be found [here](https://github.com/webprogramming260/.github/blob/main/profile/webServices/pm2/pm2.md)
+
+## UI Testing
+**Playwright** is a great way to automate UI testing for your web app. [Here](https://github.com/webprogramming260/.github/blob/main/profile/webServices/uiTesting/uiTesting.md) is a page that describes how to install and test Playwright functionality.
+
