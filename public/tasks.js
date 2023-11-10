@@ -1,7 +1,7 @@
 async function user_login() {
     // console.log(document.querySelector("#input_username").value)
     const nameEl = document.querySelector("#input_username").value;
-    const passwordEl = document.querySelector("#input_password").value;
+    const passwordEl = document.querySelector("#input_password").value; 
 
     const user = {
         username: nameEl,
