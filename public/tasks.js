@@ -1,5 +1,5 @@
-function user_login() {
-    console.log(document.querySelector("#input_username").value)
+async function user_login() {
+    // console.log(document.querySelector("#input_username").value)
     const nameEl = document.querySelector("#input_username").value;
     const passwordEl = document.querySelector("#input_password").value;
 
@@ -8,19 +8,37 @@ function user_login() {
         password: passwordEl,
         tasks: [],
         habits: []
-      };
+    };
 
-    localStorage.setItem(nameEl, JSON.stringify(user));
+    // localStorage.setItem(nameEl, JSON.stringify(user));
+    let key_val = { key: nameEl, value: JSON.stringify(user) };
+    await fetch('/api/updateDictionary', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(key_val),
+    });
+    
 
     // make it so their name shows up at the top
-    localStorage.setItem("page_username", nameEl);
+    // localStorage.setItem("page_username", nameEl);
+    key_val = { key: "page_username", value: nameEl }
+    await fetch('/api/updateDictionary', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(key_val),
+    });
+
 
     window.location.href = "index.html";
 }
 
-function loadPage() {
+async function loadPage() {
     // update login button with username
-    const storedUsername = localStorage.getItem('page_username');
+    let response = await fetch('/api/getDictionary');
+    const storage = await response.json();
+    const storedUsername = storage.page_username;
+    // const storedUsername = localStorage.getItem('page_username');
+
     if (storedUsername) { document.getElementById('login_button').textContent = storedUsername; }
 }
 
@@ -36,16 +54,24 @@ class Card {
 
 
 // Function to load and display cards on page load
-function loadAndDisplayCards() {
-    const storedUsername = localStorage.getItem('page_username');
+async function loadAndDisplayCards() {
+    let response = await fetch('/api/getDictionary');
+    const storage = await response.json();
+    const storedUsername = storage.page_username;
+    // const storedUsername = localStorage.getItem('page_username');
+
     if (storedUsername) {
-        const user = JSON.parse(localStorage.getItem(storedUsername));
+        let response = await fetch('/api/getDictionary');
+        const storage = await response.json();
+
+        const user = JSON.parse(storage[storedUsername]);
+        // const user = JSON.parse(localStorage.getItem(storedUsername));
         if (user && user.tasks) {
             const cardsContainer = document.querySelector('.cards_container');
             cardsContainer.innerHTML = ''; // Clear existing cards
 
             user.tasks.forEach((task) => {
-                const card = createCardElement_sessions(task);
+                const card = createCardElement(task);
                 cardsContainer.appendChild(card);
             });
         }
@@ -53,7 +79,7 @@ function loadAndDisplayCards() {
 }
 
 // Function to create a card element
-function createCardElement_sessions(card) {
+function createCardElement(card) {
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('card');
     cardDiv.style.width = '25rem';
@@ -84,26 +110,25 @@ function createCardElement_sessions(card) {
         taskText.contentEditable = true;
         taskText.textContent = task.text;
 
-        // Attach an event listener to the checkbox to update the task's completion status
+        // add an event listener to the checkbox to update the task's check status
         checkbox.addEventListener('change', () => {
             task.checked = checkbox.checked;
-            saveCardChanges_sessions();
+            saveCardChanges();
         });
 
         taskItem.appendChild(checkbox);
         taskItem.appendChild(taskText);
-
         taskList.appendChild(taskItem);
     });
 
-    // Plus button for adding a new task
+    // plus button for adding a new task
     const plusButton = document.createElement('a');
     plusButton.href = '#';
     plusButton.classList.add('btn', 'btn-outline-secondary', 'plus-button');
     plusButton.textContent = '+';
     plusButton.addEventListener('click', () => addNewTask(cardDiv));
 
-    // Add everything to card body
+    // add everything to card body
     cardBody.appendChild(title);
     cardBody.appendChild(taskList);
     cardBody.appendChild(plusButton);
@@ -113,7 +138,6 @@ function createCardElement_sessions(card) {
 
     return cardDiv;
 }
-
 
 
 // Function to add a new task to a card
@@ -127,35 +151,48 @@ function addNewTask(cardElement) {
     `;
 
     taskList.appendChild(taskItem);
-    saveCardChanges_sessions();
+    saveCardChanges();
 
-    // Prevent the default behavior of the anchor link
-    event.preventDefault();
 }
 
 
 
 
 // Function to add a new card
-function newCard() {
+async function newCard() {
     const newCard = new Card();
-    const storedUsername = localStorage.getItem('page_username');
-    const user = JSON.parse(localStorage.getItem(storedUsername));
+    
+
+    let response = await fetch('/api/getDictionary');
+    const storage = await response.json();
+    const storedUsername = storage.page_username;
+    // const storedUsername = localStorage.getItem('page_username');
+    const user = JSON.parse(storage[storedUsername]);
+    // const user = JSON.parse(localStorage.getItem(storedUsername));
 
     if (user && user.tasks) {
         user.tasks.push(newCard);
     } else {
         user.tasks = [newCard];
     }
-
-    localStorage.setItem(storedUsername, JSON.stringify(user));
+    // localStorage.setItem(storedUsername, JSON.stringify(user));
+    key_val = { key: storedUsername, value: JSON.stringify(user) };
+    await fetch('/api/updateDictionary', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(key_val),
+    });
     loadAndDisplayCards();
 }
 
 // Function to save card changes
-function saveCardChanges_sessions() {
-    const storedUsername = localStorage.getItem('page_username');
-    const user = JSON.parse(localStorage.getItem(storedUsername));
+async function saveCardChanges() {
+    let response = await fetch('/api/getDictionary');
+    const storage = await response.json();
+    const storedUsername = storage.page_username;
+    // const storedUsername = localStorage.getItem('page_username');
+    const user = JSON.parse(storage[storedUsername]);
+    // const user = JSON.parse(localStorage.getItem(storedUsername));
 
     if (user && user.tasks) {
         const cards = document.querySelectorAll('.card');
@@ -173,28 +210,38 @@ function saveCardChanges_sessions() {
             user.tasks.push(new Card(title, taskList));
         });
 
-        localStorage.setItem(storedUsername, JSON.stringify(user));
+        // localStorage.setItem(storedUsername, JSON.stringify(user));
+        key_val = { key: storedUsername, value: JSON.stringify(user) };
+        await fetch('/api/updateDictionary', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(key_val),
+        });
     }
 }
 
 
-// Attach the "Save Changes" function to the card container
+// attach save changes function to the card container
 const cardsContainer = document.querySelector('.cards_container');
-cardsContainer.addEventListener('input', saveCardChanges_sessions);
+cardsContainer.addEventListener('input', saveCardChanges);
 
 // Load and display cards on page load
 loadAndDisplayCards();
 
 // Add an event listener to update the UI when changes occur
-window.addEventListener('storage', (event) => {
+window.addEventListener('storage', async (event) => {
+    let response = await fetch('/api/getDictionary');
+    const storage = await response.json();
+
     if (event.key === 'page_username') {
         // Username changed; update login button
-        loadPage();
-    } else if (event.key === localStorage.getItem('page_username')) {
+        await loadPage();
+    } else if (event.key === storage.page_username) {
+    // } else if (event.key === localStorage.getItem('page_username')) {
         // User's data (including tasks) changed; update tasks UI
         loadAndDisplayCards();
     }
 });
 
-// Call the function to load and display tasks when the page loads
-loadAndDisplayCards();
+// // Call the function to load and display tasks when the page loads
+// loadAndDisplayCards();

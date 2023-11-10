@@ -14,16 +14,21 @@ app.use(express.static('public'));
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-// // GetScores
-// apiRouter.get('/scores', (_req, res) => {
-//   res.send(scores);
-// });
 
-// // SubmitScore
-// apiRouter.post('/score', (req, res) => {
-//   scores = updateScores(req.body, scores);
-//   res.send(scores);
-// });
+// Get Web Storage Dictionary
+apiRouter.get('/getDictionary', (_req, res) => {
+    res.json(webStorage);
+});
+
+// Update Dictionary
+apiRouter.post('/updateDictionary', (req, res) => {
+    const key = req.body.key;
+    const value = req.body.value;
+    webStorage[key] = value;
+    res.json(webStorage);
+});
+
+
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
@@ -33,3 +38,7 @@ app.use((_req, res) => {
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+
+
+let webStorage = {};
