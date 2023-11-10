@@ -62,5 +62,5 @@ For this deliverable, I added the following functionality to my server:
 + HTTP service using Node.js and Express — I configured my server to use Node.js and Express!
 + Frontend served up using express static middleware — Done! My frontend is served up using Express
 + Frontend calls third-party service endpoints — I added an "Advice of the Day!" section to the *Community* page which makes a request to a third-party advice generator
-+ Backend provides service endpoints — *set up endpoints in index.js to handle fetch calls with specific parameters
-+ Frontend calls those service endpoints — *makes fetch calls instead of just referencing local storage
++ Backend provides service endpoints — My backend provides endpoints that my frontend calls
++ Frontend calls those service endpoints — My frontend calls those backend endpoints
