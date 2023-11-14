@@ -841,7 +841,7 @@ One common method for tracking *state* is the **cookie**. Cookies are generated 
 **Security**: `Same Origin Policy` (SOP) was created to only allows JavaScript to make requests to a domain if it is the same domain that the user is currently viewing. `Cross Origin Resource Sharing` (CORS) was invented to allow the client (e.g. browser) to specify the origin of a request and then let the server respond with what origins are allowed.
 
 
-## Node.js
+### Node.js
 Node.js runs Chrome's V8 engine outside of a browser. You need to install Node.js in both your prod and dev environments. This is done through the `Node Version Manager` (NVM). You can execute a line of JavaScript with Node.js from your console with the `-e` parameter.
 
 ```sh
@@ -871,7 +871,7 @@ In summary,
 6. Use the code the package provides in your JavaScript
 7. Run your code with `node index.js`
 
-## Express
+### Express
 Express is a Node.js package that helps with:
 + Routing requests for service endpoints
 + Manipulating HTTP requests with JSON body content
@@ -894,7 +894,7 @@ app.listen(8080);
 You can then call all the HTTP verbs as methods to your `app` object.
 
 
-## Debugging Node.js in Browser
+### Debugging Node.js in Browser
 Instead of using VS Code's Live Server functionality to test code, we can use a port and a browser to debug a Node.js web service. Here is an example:<br>
 <br>
 Create a new file called `main.js` and containing this:
@@ -915,7 +915,7 @@ app.listen(port, function () {
 
 Then, open the terminal, navigate to the directory holding that file, and run `npm init -y` and `npm install express`. Then you can run the code and go to the browser and type in `localhost:8080`. You should be able to see the request object in your VS Code debugger. You can pass in more parameters in the browser search bar like `http://localhost:8080/fish/taco?order=2` and see them in the debugger. **Nodemon** is wrapper for Node that makes Node refresh everytime changes are saved in JS. See [this](https://github.com/webprogramming260/.github/blob/main/profile/webServices/debuggingNode/debuggingNode.md) page to learn how to install Nodemon. <br> <br>
 
-## PM2
+### PM2
 PM2 is a way to keep your web service running all the time in the background. It has already been configured for this project. Here is what you would do if you wanted to add a new subdomain to the website with a new web service:
 
 + Add the rule to the Caddyfile to tell it how to direct requests for the domain
@@ -924,6 +924,44 @@ PM2 is a way to keep your web service running all the time in the background. It
 
 A full description of each step can be found [here](https://github.com/webprogramming260/.github/blob/main/profile/webServices/pm2/pm2.md)
 
-## UI Testing
+### UI Testing
 **Playwright** is a great way to automate UI testing for your web app. [Here](https://github.com/webprogramming260/.github/blob/main/profile/webServices/uiTesting/uiTesting.md) is a page that describes how to install and test Playwright functionality.
 
+### Data Storage
+Instead of storing files on your server, you should store them on a third-party service that you can access through the server. One great example is AWS S3. S3 has unlimited storage and you only pay for what you need. You will need to set up an S3 bucket and credentials, and then use those credentials in your server to access the data. DO NOT post your credentials to GitHub!
+
+### Data Services
+Here are some popular data services for storing data...
+
+| Service       | Specialty             |
+| ------------- | --------------------- |
+| MySQL         | Relational queries    |
+| Redis         | Memory cached objects |
+| ElasticSearch | Ranked free text      |
+| MongoDB       | JSON objects          |
+| DynamoDB      | Key value pairs       |
+| Neo4J         | Graph based data      |
+| InfluxDB      | Time series data      |
+
+**Mongo DB** uses JSON objects as the core data structure. Mongo is made up of collections (each is an array of JS objects, and each object has a unique ID). <br><br>
+
+Your Mongo db has methods for finding certain items:
+
+```js
+// find all houses
+db.house.find();
+
+// find houses with two or more bedrooms
+db.house.find({ beds: { $gte: 2 } });
+
+// find houses that are available with less than three beds
+db.house.find({ status: 'available', beds: { $lt: 3 } });
+
+// find houses with either less than three beds or less than $1000 a night
+db.house.find({ $or: [(beds: { $lt: 3 }), (price: { $lt: 1000 })] });
+
+// find houses with the text 'modern' or 'beach' in the summary
+db.house.find({ summary: /(modern|beach)/i });
+```
+
+See [this](https://github.com/webprogramming260/.github/blob/main/profile/webServices/dataServices/dataServices.md) page for info on setting up a basic Mongo db.
