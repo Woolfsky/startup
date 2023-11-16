@@ -64,3 +64,9 @@ For this deliverable, I added the following functionality to my server:
 + Frontend calls third-party service endpoints — I added an "Advice of the Day!" section to the *Community* page which makes a request to a third-party advice generator
 + Backend provides service endpoints — My backend provides endpoints that my frontend calls
 + Frontend calls those service endpoints — My frontend calls those backend endpoints
+
+## DB Deliverable
+For this deliverable, I added the following functionality:
++ MongoDB Atlas database created — 
++ Provides backend endpoints for manipulating application data —
++ Stores application data in MongoDB —
