@@ -4,7 +4,7 @@ const config = require('./dbConfig.json');
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('startup');
-const scoreCollection = db.collection('cards');
+const myCollection = db.collection('cards');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -15,15 +15,24 @@ const scoreCollection = db.collection('cards');
   process.exit(1);
 });
 
-async function getDict() {
-    const d =  await db.find();
-    return d;
+async function updateDict(k, v) {
+    const filter = {
+        doc_identifier_ : "the one and only"
+    };
+
+    const updateDocument = {};
+    updateDocument['$set'] = {
+        [k]: v,
+    };
+    
+    const result = await myCollection.updateOne(filter, updateDocument);
+    return getDict();
 }
 
-async function updateDict(k, v) {
-    find = 
-    value = 
-    db.updateOne(find, value);
+async function getDict() {
+    const cursor = await myCollection.find();
+    const resultArray = await cursor.toArray();
+    return resultArray[0];
 }
 
 

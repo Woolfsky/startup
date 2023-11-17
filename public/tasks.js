@@ -16,7 +16,7 @@ async function user_login() {
         method: 'POST',
         headers: {'content-type': 'application/json'},
         body: JSON.stringify(key_val),
-    });
+    }).catch(error => console.error('Error in fetch:', error));
     
 
     // make it so their name shows up at the top
@@ -26,8 +26,7 @@ async function user_login() {
         method: 'POST',
         headers: {'content-type': 'application/json'},
         body: JSON.stringify(key_val),
-    });
-
+    }).catch(error => console.error('Error in fetch:', error));
 
     window.location.href = "index.html";
 }
@@ -36,6 +35,7 @@ async function loadPage() {
     // update login button with username
     let response = await fetch('/api/getDictionary');
     const storage = await response.json();
+
     const storedUsername = storage.page_username;
     // const storedUsername = localStorage.getItem('page_username');
 
@@ -166,6 +166,7 @@ async function newCard() {
     let response = await fetch('/api/getDictionary');
     const storage = await response.json();
     const storedUsername = storage.page_username;
+
     // const storedUsername = localStorage.getItem('page_username');
     const user = JSON.parse(storage[storedUsername]);
     // const user = JSON.parse(localStorage.getItem(storedUsername));
@@ -181,7 +182,7 @@ async function newCard() {
         method: 'POST',
         headers: {'content-type': 'application/json'},
         body: JSON.stringify(key_val),
-    });
+    }).catch(error => console.error('Error in fetch:', error));
     loadAndDisplayCards();
 }
 
@@ -216,7 +217,7 @@ async function saveCardChanges() {
             method: 'POST',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(key_val),
-        });
+        }).catch(error => console.error('Error in fetch:', error));
     }
 }
 

@@ -15,6 +15,7 @@ app.use(express.static('public'));
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+
 // Get Web Storage Dictionary
 // apiRouter.get('/getDictionary', (_req, res) => {
 //     res.json(webStorage);
@@ -23,6 +24,7 @@ apiRouter.get('/getDictionary', async (_req, res) => {
   const _dict = await DB.getDict();
   res.json(_dict);
 });
+
 
 // Update Dictionary
 // apiRouter.post('/updateDictionary', (req, res) => {
@@ -34,11 +36,8 @@ apiRouter.get('/getDictionary', async (_req, res) => {
 apiRouter.post('/updateDictionary', async (req, res) => {
   const key = req.body.key;
   const value = req.body.value;
-  DB.updateDict(key, value);
-  
-
-  webStorage[key] = value;
-  res.json(webStorage);
+  _dict = await DB.updateDict(key, value);
+  res.json(_dict);
 });
 
 
