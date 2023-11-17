@@ -37,3 +37,5 @@ async function getDict() {
 
 
 module.exports = { getDict, updateDict };
+
+// Note, I should probaly store users in a dictionary within the db so that people can't override keys like page_username with their login credentials on accident

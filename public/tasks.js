@@ -64,7 +64,7 @@ async function loadAndDisplayCards() {
     console.log(JSON.parse(storage[storedUsername]).tasks[0] == null)
 
     if (storedUsername) {
-        if (JSON.parse(storage[storedUsername]).tasks[0] != null) {             // this condition forces it to display the prompt to login to make a card
+        if (JSON.parse(storage[storedUsername]).tasks[0] != null) {             // this condition forces it to display the prompt to login to make a card (there's still a lag though, maybe look into fixing that)
             let response = await fetch('/api/getDictionary');
             const storage = await response.json();
     
