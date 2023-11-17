@@ -67,6 +67,6 @@ For this deliverable, I added the following functionality to my server:
 
 ## DB Deliverable
 For this deliverable, I added the following functionality:
-+ MongoDB Atlas database created — 
-+ Provides backend endpoints for manipulating application data —
-+ Stores application data in MongoDB —
++ MongoDB Atlas database created — Done! MongoDB is up and running
++ Provides backend endpoints for manipulating application data — Done! My endpoints work with the database
++ Stores application data in MongoDB — Done! MongoDB is where my data is stored
