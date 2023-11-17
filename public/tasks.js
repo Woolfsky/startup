@@ -60,20 +60,25 @@ async function loadAndDisplayCards() {
     const storedUsername = storage.page_username;
     // const storedUsername = localStorage.getItem('page_username');
 
+    console.log("Heres the full storage")
+    console.log(JSON.parse(storage[storedUsername]).tasks[0] == null)
+
     if (storedUsername) {
-        let response = await fetch('/api/getDictionary');
-        const storage = await response.json();
-
-        const user = JSON.parse(storage[storedUsername]);
-        // const user = JSON.parse(localStorage.getItem(storedUsername));
-        if (user && user.tasks) {
-            const cardsContainer = document.querySelector('.cards_container');
-            cardsContainer.innerHTML = ''; // Clear existing cards
-
-            user.tasks.forEach((task) => {
-                const card = createCardElement(task);
-                cardsContainer.appendChild(card);
-            });
+        if (JSON.parse(storage[storedUsername]).tasks[0] != null) {             // this condition forces it to display the prompt to login to make a card
+            let response = await fetch('/api/getDictionary');
+            const storage = await response.json();
+    
+            const user = JSON.parse(storage[storedUsername]);
+            // const user = JSON.parse(localStorage.getItem(storedUsername));
+            if (user && user.tasks) {
+                const cardsContainer = document.querySelector('.cards_container');
+                cardsContainer.innerHTML = ''; // Clear existing cards
+    
+                user.tasks.forEach((task) => {
+                    const card = createCardElement(task);
+                    cardsContainer.appendChild(card);
+                });
+            }
         }
     }
 }
@@ -243,6 +248,3 @@ window.addEventListener('storage', async (event) => {
         loadAndDisplayCards();
     }
 });
-
-// // Call the function to load and display tasks when the page loads
-// loadAndDisplayCards();
