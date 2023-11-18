@@ -19,6 +19,7 @@ if (playControlEl) {
 
 async function loginUser() {
     loginOrCreate(`/api/auth/login`);
+    // window.location.href = "tasks.html";
   }
   
   async function createUser() {
@@ -39,6 +40,7 @@ async function loginUser() {
   
     if (response.ok) {
       localStorage.setItem('userName', userName);
+      // if (endpoint==`/api/auth/create`) { user_login(); }
       user_login();
     } else {
       const body = await response.json();
@@ -75,6 +77,7 @@ async function loginUser() {
 
 async function user_login() {
 
+
     const nameEl = localStorage.getItem('userName');
     const user = {
         username: nameEl,
@@ -88,6 +91,7 @@ async function user_login() {
         headers: {'content-type': 'application/json'},
         body: JSON.stringify(key_val),
     }).catch(error => console.error('Error in fetch:', error));
+
     
 
 

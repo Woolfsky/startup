@@ -58,9 +58,13 @@ async function getDict(userName) {
     const filter = { email: userName }
     const cursor = await userCollection.find(filter);
     const resultArray = await cursor.toArray();
-    console.log("here is the resultArray from getDict:")
-    console.log(resultArray[0])
-    return resultArray[0];
+    return resultArray;
+//     const key = userName.split("@")[0]
+//     const string_form = resultArray[0][userName.split("@")[0]]
+//     const parsedObject = eval('(' + string_form + ')');
+//     console.log("parsed version of return object (within getDict)")
+//     console.log(parsedObject)
+//     return JSON.stringify(parsedObject)
 }
 
 
