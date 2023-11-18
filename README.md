@@ -75,5 +75,5 @@ For this deliverable, I added the following functionality:
 I added the following functionality to my server:
 + **User registration** — My server supports new user registration
 + **User authentication** — The server also supports existing user authentication
-+ **Stores and retrieves** credentials in MongoDB — My server uses MongoDB to store and receive each user's task-card information
-+ **Restricts application** functionality based upon authentication — unauthenticated users cannot access information
++ **Stores and retrieves credentials in MongoDB** — My server uses MongoDB to store and receive each user's task-card information
++ **Restricts application functionality based upon authentication** — unauthenticated users cannot access information
