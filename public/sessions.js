@@ -1,54 +1,10 @@
-// async function user_login() {
-//     // console.log(document.querySelector("#input_username").value)
-//     const nameEl = document.querySelector("#input_username").value;
-//     const passwordEl = document.querySelector("#input_password").value;
-
-//     const user = {
-//         username: nameEl,
-//         password: passwordEl,
-//         tasks: [],
-//         habits: []
-//     };
-
-//     // localStorage.setItem(nameEl, JSON.stringify(user));
-//     let key_val = { key: nameEl, value: JSON.stringify(user) };
-//     await fetch('/api/updateDictionary', {
-//         method: 'POST',
-//         headers: {'content-type': 'application/json'},
-//         body: JSON.stringify(key_val),
-//     });
-    
-
-//     // make it so their name shows up at the top
-//     // localStorage.setItem("page_username", nameEl);
-//     key_val = { key: "page_username", value: nameEl }
-//     await fetch('/api/updateDictionary', {
-//         method: 'POST',
-//         headers: {'content-type': 'application/json'},
-//         body: JSON.stringify(key_val),
-//     });
-
-
-//     window.location.href = "index.html";
-// }
-
 function logout() {
     window.location.href = "index.html";
+    localStorage.removeItem('userName');
+    fetch(`/api/auth/logout`, {
+      method: 'delete',
+    }).then(() => (window.location.href = '/'));
 }
-
-// async function loadPage() {
-//     // update login button with username
-//     let response = await fetch('/api/getDictionary');
-//     const storage = await response.json();
-//     const storedUsername = storage.page_username;
-//     // const storedUsername = localStorage.getItem('page_username');
-
-//     if (storedUsername) { document.getElementById('login_button').textContent = storedUsername; }
-// }
-
-// loadPage();
-
-
 class Card {
     constructor(title, list) {
         this.title = title || '[Add title]';
@@ -58,17 +14,6 @@ class Card {
 
 // Function to load task titles into the dropdown
 async function loadTaskTitles() {
-    // let response = await fetch('/api/getDictionary');
-    // const storage = await response.json();
-    // const storedUsername = storage.page_username;
-
-    // // const storedUsername = localStorage.getItem("page_username");
-    // if (storedUsername) {
-    //     let response = await fetch('/api/getDictionary');
-    //     const storage = await response.json();
-
-    //     const user = JSON.parse(storage[storedUsername]);
-    // //   const user = JSON.parse(localStorage.getItem(storedUsername));
     const userName = localStorage.getItem('userName')
     const userNameObject = {"userName": userName}
     let response = await fetch('/api/getDictionary', {
@@ -92,8 +37,6 @@ async function loadTaskTitles() {
         });
       }
 }
-
-
 loadTaskTitles()
 
 // Function to create a card element
@@ -161,13 +104,6 @@ function createCardElement_sessions(card) {
 // Function to display the selected task card
 async function displaySelectedTask_sessions() {
     const selectedTitle = taskSelect.value;
-    // let response = await fetch('/api/getDictionary');
-    // const storage = await response.json();
-    // const storedUsername = storage.page_username;
-    // // const storedUsername = localStorage.getItem("page_username");
-    // if (selectedTitle !== "default" && storedUsername) {
-    //     const user = JSON.parse(storage[storedUsername]);
-    // //   const user = JSON.parse(localStorage.getItem(storedUsername));
     const userName = localStorage.getItem('userName')
     const userNameObject = {"userName": userName}
     let response = await fetch('/api/getDictionary', {
@@ -202,12 +138,6 @@ document.getElementById('taskSelect').addEventListener('change', function () {
 
 // Function to save card changes
 async function saveCardChanges_sessions() {
-    // let response = await fetch('/api/getDictionary');
-    // const storage = await response.json();
-    // const storedUsername = storage.page_username;
-    // // const storedUsername = localStorage.getItem('page_username');
-    // const user = JSON.parse(storage[storedUsername]);
-    // // const user = JSON.parse(localStorage.getItem(storedUsername));
     const userName = localStorage.getItem('userName')
     const userNameObject = {"userName": userName}
     let response = await fetch('/api/getDictionary', {
@@ -282,13 +212,5 @@ function addNewTask(cardElement) {
         saveCardChanges_sessions();
     }
 }
-
-
-
-
-// Attach the "Save Changes" function to the card container
-const cardsContainer = document.querySelector('.cards_container');
-// cardsContainer.addEventListener('input', saveCardChanges_sessions);
-
 
 

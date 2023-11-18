@@ -85,13 +85,6 @@ secureApiRouter.use(async (req, res, next) => {
   }
 });
 
-// // Get Web Storage Dictionary—GET VERSION
-// apiRouter.get('/getDictionary', async (_req, res) => {
-//   const user = await DB.getUser().email;
-//   const _dict = await DB.getDict(user);
-//   res.json(_dict);
-// });
-
 // Get Web Storage Dictionary—POST VERSION
 apiRouter.post('/getDictionary', async (_req, res) => {
   const userName = _req.body.userName;

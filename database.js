@@ -44,12 +44,10 @@ async function updateDict(k, v) {
     const filter = {
         email : k
     };
-
     const updateDocument = {};
     updateDocument['$set'] = {
         [k.split("@")[0]]: v,
     };
-    
     const result = await userCollection.updateOne(filter, updateDocument);
     return getDict(k);
 }
@@ -59,12 +57,6 @@ async function getDict(userName) {
     const cursor = await userCollection.find(filter);
     const resultArray = await cursor.toArray();
     return resultArray;
-//     const key = userName.split("@")[0]
-//     const string_form = resultArray[0][userName.split("@")[0]]
-//     const parsedObject = eval('(' + string_form + ')');
-//     console.log("parsed version of return object (within getDict)")
-//     console.log(parsedObject)
-//     return JSON.stringify(parsedObject)
 }
 
 

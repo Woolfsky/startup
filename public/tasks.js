@@ -1,80 +1,18 @@
-// async function user_login() {
-//     // console.log(document.querySelector("#input_username").value)
-//     const nameEl = document.querySelector("#input_username").value;
-//     const passwordEl = document.querySelector("#input_password").value; 
-
-//     const user = {
-//         username: nameEl,
-//         password: passwordEl,
-//         tasks: [],
-//         habits: []
-//     };
-
-//     // localStorage.setItem(nameEl, JSON.stringify(user));
-//     let key_val = { key: nameEl, value: JSON.stringify(user) };
-//     await fetch('/api/updateDictionary', {
-//         method: 'POST',
-//         headers: {'content-type': 'application/json'},
-//         body: JSON.stringify(key_val),
-//     }).catch(error => console.error('Error in fetch:', error));
-    
-
-//     // make it so their name shows up at the top
-//     // localStorage.setItem("page_username", nameEl);
-//     key_val = { key: "page_username", value: nameEl }
-//     await fetch('/api/updateDictionary', {
-//         method: 'POST',
-//         headers: {'content-type': 'application/json'},
-//         body: JSON.stringify(key_val),
-//     }).catch(error => console.error('Error in fetch:', error));
-
-//     console.log("logged in!!!")
-//     window.location.href = "tasks.html";
-// }
-
 function logout() {
     window.location.href = "index.html";
+    localStorage.removeItem('userName');
+    fetch(`/api/auth/logout`, {
+      method: 'delete',
+    }).then(() => (window.location.href = '/'));
 }
-
 async function getUser(email) {
     // See if we have a user with the given email.
     const response = await fetch(`/api/user/${email}`);
     if (response.status === 200) {
       return response.json();
     }
-  
     return null;
   }
-
-// async function loadPage() {
-
-
-//     // update login button with username             NOTE: If I need to use this, look at loadAndDisplayCards call bc this call has a bug
-//     const user = localStorage.getItem('userName')
-//     let response = await fetch('/api/getDictionary', {
-//         method: 'POST',
-//         headers: {'content-type': 'application/json'},
-//         body: user,
-//     });
-
-//     console.log("Inside loadPage")
-//     console.log("response...")
-//     console.log(response)
-//     const storage = await response // I took off .json();
-//     console.log("storage...")
-//     console.log(storage)
-
-//     const storedUsername = storage.page_username;
-//     console.log("storedUsername")
-//     console.log(storedUsername)
-//     // const storedUsername = localStorage.getItem('page_username');
-
-//     if (storedUsername) { document.getElementById('login_button').textContent = storedUsername; }
-// }
-
-// loadPage();
-
-
 class Card {
     constructor(title, list) {
         this.title = title || '[Add title]';
@@ -82,57 +20,31 @@ class Card {
     }
 }
 
-
 // Function to load and display cards on page load
 async function loadAndDisplayCards() {
-    // const user = localStorage.getItem('userName')
-    // let response = await fetch('/api/getDictionary', {
-    //     method: 'POST',
-    //     headers: {'content-type': 'application/json'},
-    //     body: user,
-    // });
-    
-    // console.log("Inside loadAndDisplayCards...")
-    // console.log("response...")
-    // console.log(response)
-    // const storage = await response // I took off .json();
-    // console.log("storage...")
-    // console.log(storage)
-    // const storedUsername = storage.page_username;
-    // console.log("storedUsername...")
-    // console.log(storedUsername)
-    // // const storedUsername = localStorage.getItem('page_username');
+    const userName = localStorage.getItem('userName')
+    const userNameObject = {"userName": userName}
+    let response = await fetch('/api/getDictionary', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(userNameObject),
+    });
+    const storage = await response.json()
 
+    const key_ = userName.split("@")[0]
+    const stringified_stuff = storage[key_]
 
-    // if (storedUsername) {
-    //     if (JSON.parse(storage[storedUsername]).tasks[0] != null) {             // this condition forces it to display the prompt to login to make a card (there's still a lag though, maybe look into fixing that)
-    
-            const userName = localStorage.getItem('userName')
-            const userNameObject = {"userName": userName}
-            let response = await fetch('/api/getDictionary', {
-                method: 'POST',
-                headers: {'content-type': 'application/json'},
-                body: JSON.stringify(userNameObject),
-            });
-            const storage = await response.json()
+    const user = eval('(' + stringified_stuff + ')')
 
-            const key_ = userName.split("@")[0]
-            const stringified_stuff = storage[key_]
+    if (user && user.tasks) {
+        const cardsContainer = document.querySelector('.cards_container');
+        cardsContainer.innerHTML = ''; // Clear existing cards
 
-            const user = eval('(' + stringified_stuff + ')')
-
-            // const user = JSON.parse(localStorage.getItem(storedUsername));
-            if (user && user.tasks) {
-                const cardsContainer = document.querySelector('.cards_container');
-                cardsContainer.innerHTML = ''; // Clear existing cards
-    
-                user.tasks.forEach((task) => {
-                    const card = createCardElement(task);
-                    cardsContainer.appendChild(card);
-                });
-            }
-    //     }
-    // }
+        user.tasks.forEach((task) => {
+            const card = createCardElement(task);
+            cardsContainer.appendChild(card);
+        });
+    }
 }
 
 // Function to create a card element
@@ -206,31 +118,14 @@ function addNewTask(cardElement) {
         <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
         <span contenteditable>New task</span>
     `;
-
     taskList.appendChild(taskItem);
     saveCardChanges();
-
 }
-
-
-
 
 // Function to add a new card
 async function newCard() {
     const newCard = new Card();
-    
 
-    // const userName = localStorage.getItem('userName')
-    // let response = await fetch('/api/getDictionary', {
-    //     method: 'POST',
-    //     headers: {'content-type': 'application/json'},
-    //     body: userName,
-    // });
-    // const storage = await response.json();
-    // const storedUsername = storage.page_username;
-
-    // // const storedUsername = localStorage.getItem('page_username');
-    // const user = JSON.parse(storage[storedUsername]);
     const userName = localStorage.getItem('userName')
     const userNameObject = {"userName": userName}
     let response = await fetch('/api/getDictionary', {
@@ -245,15 +140,12 @@ async function newCard() {
 
     const user = eval('(' + stringified_stuff + ')')
 
-
-    // const user = JSON.parse(localStorage.getItem(storedUsername));
-
     if (user && user.tasks) {
         user.tasks.push(newCard);
     } else {
         user.tasks = [newCard];
     }
-    // localStorage.setItem(storedUsername, JSON.stringify(user));
+
     key_val = { key: userName, value: JSON.stringify(user) };
     await fetch('/api/updateDictionary', {
         method: 'POST',
@@ -265,17 +157,6 @@ async function newCard() {
 
 // Function to save card changes
 async function saveCardChanges() {
-    // const userName = localStorage.getItem('userName')
-    // let response = await fetch('/api/getDictionary', {
-    //     method: 'POST',
-    //     headers: {'content-type': 'application/json'},
-    //     body: userName,
-    // });
-    // const storage = await response.json();
-    // const storedUsername = storage.page_username;
-    // // const storedUsername = localStorage.getItem('page_username');
-    // const user = JSON.parse(storage[storedUsername]);
-    // const user = JSON.parse(localStorage.getItem(storedUsername));
     const userName = localStorage.getItem('userName')
     const userNameObject = {"userName": userName}
     let response = await fetch('/api/getDictionary', {
@@ -323,24 +204,3 @@ cardsContainer.addEventListener('input', saveCardChanges);
 
 // Load and display cards on page load
 loadAndDisplayCards();
-
-// Add an event listener to update the UI when changes occur
-// window.addEventListener('storage', async (event) => {
-//     // let response = await fetch('/api/getDictionary'); // here is the old version of the getDictionary fetch
-//     const userName = localStorage.getItem('userName')
-//     let response = await fetch('/api/getDictionary', {
-//         method: 'POST',
-//         headers: {'content-type': 'application/json'},
-//         body: userName,
-//     });
-//     const storage = await response.json();
-
-//     if (event.key === 'page_username') {
-//         // Username changed; update login button
-//         await loadPage();
-//     } else if (event.key === storage.page_username) {
-//     // } else if (event.key === localStorage.getItem('page_username')) {
-//         // User's data (including tasks) changed; update tasks UI
-//         loadAndDisplayCards();
-//     }
-// });

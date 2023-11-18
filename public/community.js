@@ -20,6 +20,10 @@ function user_login() {
 
 function logout() {
     window.location.href = "index.html";
+    localStorage.removeItem('userName');
+    fetch(`/api/auth/logout`, {
+      method: 'delete',
+    }).then(() => (window.location.href = '/'));
 }
 
 function loadPage() {

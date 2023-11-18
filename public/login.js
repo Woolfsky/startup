@@ -19,7 +19,6 @@ if (playControlEl) {
 
 async function loginUser() {
     loginOrCreate(`/api/auth/login`);
-    // window.location.href = "tasks.html";
   }
   
   async function createUser() {
@@ -27,7 +26,6 @@ async function loginUser() {
   }
   
   async function loginOrCreate(endpoint) {
-
     const userName = document.querySelector('#userName')?.value;
     const password = document.querySelector('#userPassword')?.value;
     const response = await fetch(endpoint, {
@@ -40,8 +38,9 @@ async function loginUser() {
   
     if (response.ok) {
       localStorage.setItem('userName', userName);
-      // if (endpoint==`/api/auth/create`) { user_login(); }
-      user_login();
+      if (endpoint==`/api/auth/create`) { user_login(); }
+      window.location.href = "tasks.html";
+
     } else {
       const body = await response.json();
       const modalEl = document.querySelector('#msgModal');
@@ -68,16 +67,10 @@ async function loginUser() {
     if (response.status === 200) {
       return response.json();
     }
-  
     return null;
   }
 
-
-
-
 async function user_login() {
-
-
     const nameEl = localStorage.getItem('userName');
     const user = {
         username: nameEl,
@@ -91,33 +84,6 @@ async function user_login() {
         headers: {'content-type': 'application/json'},
         body: JSON.stringify(key_val),
     }).catch(error => console.error('Error in fetch:', error));
-
-    
-
-
-    // // console.log(document.querySelector("#input_username").value)
-    // const nameEl = document.querySelector("#input_username").value;
-    // const passwordEl = document.querySelector("#input_password").value; 
-
-    // const user = {
-    //     username: nameEl,
-    //     password: passwordEl,
-    //     tasks: [],
-    //     habits: []
-    // };
-
-    // localStorage.setItem(nameEl, JSON.stringify(user));
-    
-    // // make it so their name shows up at the top
-    // // localStorage.setItem("page_username", nameEl);
-    // key_val = { key: "page_username", value: nameEl }
-    // await fetch('/api/updateDictionary', {
-    //     method: 'POST',
-    //     headers: {'content-type': 'application/json'},
-    //     body: JSON.stringify(key_val),
-    // }).catch(error => console.error('Error in fetch:', error));
-
-
 
     window.location.href = "tasks.html";
 }
