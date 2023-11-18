@@ -1,33 +1,38 @@
-async function user_login() {
-    // console.log(document.querySelector("#input_username").value)
-    const nameEl = document.querySelector("#input_username").value;
-    const passwordEl = document.querySelector("#input_password").value; 
+// async function user_login() {
+//     // console.log(document.querySelector("#input_username").value)
+//     const nameEl = document.querySelector("#input_username").value;
+//     const passwordEl = document.querySelector("#input_password").value; 
 
-    const user = {
-        username: nameEl,
-        password: passwordEl,
-        tasks: [],
-        habits: []
-    };
+//     const user = {
+//         username: nameEl,
+//         password: passwordEl,
+//         tasks: [],
+//         habits: []
+//     };
 
-    // localStorage.setItem(nameEl, JSON.stringify(user));
-    let key_val = { key: nameEl, value: JSON.stringify(user) };
-    await fetch('/api/updateDictionary', {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify(key_val),
-    }).catch(error => console.error('Error in fetch:', error));
+//     // localStorage.setItem(nameEl, JSON.stringify(user));
+//     let key_val = { key: nameEl, value: JSON.stringify(user) };
+//     await fetch('/api/updateDictionary', {
+//         method: 'POST',
+//         headers: {'content-type': 'application/json'},
+//         body: JSON.stringify(key_val),
+//     }).catch(error => console.error('Error in fetch:', error));
     
 
-    // make it so their name shows up at the top
-    // localStorage.setItem("page_username", nameEl);
-    key_val = { key: "page_username", value: nameEl }
-    await fetch('/api/updateDictionary', {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify(key_val),
-    }).catch(error => console.error('Error in fetch:', error));
+//     // make it so their name shows up at the top
+//     // localStorage.setItem("page_username", nameEl);
+//     key_val = { key: "page_username", value: nameEl }
+//     await fetch('/api/updateDictionary', {
+//         method: 'POST',
+//         headers: {'content-type': 'application/json'},
+//         body: JSON.stringify(key_val),
+//     }).catch(error => console.error('Error in fetch:', error));
 
+//     console.log("logged in!!!")
+//     window.location.href = "tasks.html";
+// }
+
+function logout() {
     window.location.href = "index.html";
 }
 
@@ -60,8 +65,6 @@ async function loadAndDisplayCards() {
     const storedUsername = storage.page_username;
     // const storedUsername = localStorage.getItem('page_username');
 
-    console.log("Heres the full storage")
-    console.log(JSON.parse(storage[storedUsername]).tasks[0] == null)
 
     if (storedUsername) {
         if (JSON.parse(storage[storedUsername]).tasks[0] != null) {             // this condition forces it to display the prompt to login to make a card (there's still a lag though, maybe look into fixing that)

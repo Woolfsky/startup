@@ -32,6 +32,10 @@ async function user_login() {
     window.location.href = "index.html";
 }
 
+function logout() {
+    window.location.href = "index.html";
+}
+
 async function loadPage() {
     // update login button with username
     let response = await fetch('/api/getDictionary');

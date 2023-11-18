@@ -18,6 +18,10 @@ function user_login() {
     window.location.href = "index.html";
 }
 
+function logout() {
+    window.location.href = "index.html";
+}
+
 function loadPage() {
     // update login button with username
     const storedUsername = localStorage.getItem('page_username');

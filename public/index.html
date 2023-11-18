@@ -32,25 +32,28 @@
 
             <!-- Menu -->
             <ul class="nav justify-content-end">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="index.html">Tasks</a>
-                </li>
+                </li> -->
+
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="habits.html">Habits</a>
                 </li> -->
-                <li class="nav-item">
+
+                <!-- <li class="nav-item">
                   <a class="nav-link" href="sessions.html">Sessions</a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="community.html">Community</a>
-                  </li>
+                  </li> -->
 
               </ul>
 
             <!-- Login -->
             <div class="col-md-1 text-center">
                 <!-- Button -->
-                <button id="login_button" type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">Login</button>
+                <!-- <button id="login_button" type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">Login</button> -->
             
             
                 <!-- Modal -->
@@ -90,12 +93,13 @@
     
     <!---- Body ---->
     <main>
-        <h2 class="my_cards" style="text-align: left;">My Cards</h2>
+        <!-- <h2 class="my_cards" style="text-align: left;">My Cards</h2>
 
         <input type="button" value="New Card" class="btn btn-secondary" onclick="newCard()"> 
         <hr />
 
-        <!-- Cards -->
+
+
         <div class="cards_container">
             <div class="cards_container" style="gap: 100px;">
                 <div class="card" style="width: 25rem;">
@@ -108,15 +112,55 @@
             
         </div>
 
-        <!-- </div>
+        <hr /> -->
 
-            
+        <div>
+          <br>
+          <br>
+          <br>
 
-            
+          <h1 class="my_cards" style="text-align: left;">welcome to focus</h1>
 
+          <!-- Displayed when needing authentication -->
+          <div id="loginControls" style="display: none">
+            <h5 class="my_cards" style="text-align: center;">login to access cards</h5>
             <br>
-        </div> -->
-        <hr />
+            <div class="input-group mb-3">
+              <span class="input-group-text">@</span>
+              <input class="form-control" type="text" id="userName" placeholder="your@email.com" />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">🔒</span>
+              <input class="form-control" type="password" id="userPassword" placeholder="password" />
+            </div>
+              <div style="display:flex; justify-content: center;">
+                <button style="margin: 5px;" type="button" class="btn btn-outline-secondary" onclick="loginUser()">Login</button>
+                <button style="margin: 5px;" type="button" class="btn btn-outline-secondary" onclick="createUser()">Create</button>
+              </div>
+            
+          </div>
+          <!-- Displayed when ready to play -->
+          <div id="playControls" style="display: none">
+            <div class="my_cards" style="text-align: center;" id="playerName"></div>
+            <br>
+            <div style="display:flex; justify-content: center;">
+              <button style="margin: 5px;" type="button" class="btn btn-outline-secondary" onclick="logout()">Logout</button>
+              <button style="margin: 5px;" type="button" class="btn btn-outline-secondary" onclick="goToTasks()">Go to Tasks</button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Error dialog -->
+        <div class="modal fade" id="msgModal" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-dark">
+              <div class="modal-body">error message here</div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </main>
 
     <!---- Footer ---->
@@ -126,7 +170,7 @@
     </footer>
 
     <!-- JavaSript -->
-    <script src="tasks.js"></script>
+    <script src="login.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

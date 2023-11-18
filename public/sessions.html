@@ -33,7 +33,7 @@
       <!-- Menu -->
       <ul class="nav justify-content-end">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.html">Tasks</a>
+            <a class="nav-link" aria-current="page" href="tasks.html">Tasks</a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="habits.html">Habits</a>
@@ -50,37 +50,7 @@
       <!-- Login -->
       <div class="col-md-1 text-center">
         <!-- Button -->
-        <button id="login_button" type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">Login</button>
-    
-    
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Log in to your account</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div style="text-align: left;" class="modal-body">
-                    <form>
-                      <div class="form-group">
-                        <label for="input_username">Username</label>
-                        <input type="email" class="form-control" id="input_username" aria-describedby="emailHelp" placeholder="Enter username">
-                      </div>
-                      <br>
-                      <div class="form-group">
-                        <label for="input_password">Password</label>
-                        <input type="password" class="form-control" id="input_password" placeholder="Password">
-                      </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="user_login()">Continue</button>
-                </div>
-            </div>
-            </div>
-        </div>
+        <button id="logout_button" type="button" class="btn btn-outline-secondary" onclick="logout()">Logout</button>
 
     </div>
 
