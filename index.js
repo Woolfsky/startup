@@ -51,7 +51,7 @@ apiRouter.post('/auth/login', async (req, res) => {
       return;
     }
   }
-  res.status(401).send({ msg: 'Unauthorized' });
+  res.status(401).send({ msg: 'Unauthorized (GetAuth)' });
 });
 
 // DeleteAuth token if stored in cookie
@@ -81,13 +81,21 @@ secureApiRouter.use(async (req, res, next) => {
   if (user) {
     next();
   } else {
-    res.status(401).send({ msg: 'Unauthorized' });
+    res.status(401).send({ msg: 'Unauthorized (secureApi)' });
   }
 });
 
-// Get Web Storage Dictionary
-apiRouter.get('/getDictionary', async (_req, res) => {
-  const _dict = await DB.getDict();
+// // Get Web Storage Dictionary
+// apiRouter.get('/getDictionary', async (_req, res) => {
+//   const user = await DB.getUser().email;
+//   const _dict = await DB.getDict(user);
+//   res.json(_dict);
+// });
+
+// Get Web Storage Dictionary !!!!!POST VERSION!!!!!
+apiRouter.post('/getDictionary', async (_req, res) => {
+  const userName = req.body.userName;
+  const _dict = await DB.getDict(userName);
   res.json(_dict);
 });
 
@@ -95,6 +103,7 @@ apiRouter.get('/getDictionary', async (_req, res) => {
 apiRouter.post('/updateDictionary', async (req, res) => {
   const key = req.body.key;
   const value = req.body.value;
+
   _dict = await DB.updateDict(key, value);
   res.json(_dict);
 });

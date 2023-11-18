@@ -26,6 +26,7 @@ async function loginUser() {
   }
   
   async function loginOrCreate(endpoint) {
+
     const userName = document.querySelector('#userName')?.value;
     const password = document.querySelector('#userPassword')?.value;
     const response = await fetch(endpoint, {
@@ -38,7 +39,7 @@ async function loginUser() {
   
     if (response.ok) {
       localStorage.setItem('userName', userName);
-      window.location.href = 'play.html';
+      user_login();
     } else {
       const body = await response.json();
       const modalEl = document.querySelector('#msgModal');
@@ -60,7 +61,6 @@ async function loginUser() {
   }
   
   async function getUser(email) {
-    let scores = [];
     // See if we have a user with the given email.
     const response = await fetch(`/api/user/${email}`);
     if (response.status === 200) {
@@ -74,19 +74,15 @@ async function loginUser() {
 
 
 async function user_login() {
-    // console.log(document.querySelector("#input_username").value)
-    const nameEl = document.querySelector("#input_username").value;
-    const passwordEl = document.querySelector("#input_password").value; 
 
+    const nameEl = localStorage.getItem('userName');
     const user = {
         username: nameEl,
-        password: passwordEl,
         tasks: [],
         habits: []
     };
+    let key_val = { key: nameEl, value: JSON.stringify(user)};
 
-    // localStorage.setItem(nameEl, JSON.stringify(user));
-    let key_val = { key: nameEl, value: JSON.stringify(user) };
     await fetch('/api/updateDictionary', {
         method: 'POST',
         headers: {'content-type': 'application/json'},
@@ -94,15 +90,30 @@ async function user_login() {
     }).catch(error => console.error('Error in fetch:', error));
     
 
-    // make it so their name shows up at the top
-    // localStorage.setItem("page_username", nameEl);
-    key_val = { key: "page_username", value: nameEl }
-    await fetch('/api/updateDictionary', {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify(key_val),
-    }).catch(error => console.error('Error in fetch:', error));
 
-    console.log("logged in!!!")
+    // // console.log(document.querySelector("#input_username").value)
+    // const nameEl = document.querySelector("#input_username").value;
+    // const passwordEl = document.querySelector("#input_password").value; 
+
+    // const user = {
+    //     username: nameEl,
+    //     password: passwordEl,
+    //     tasks: [],
+    //     habits: []
+    // };
+
+    // localStorage.setItem(nameEl, JSON.stringify(user));
+    
+    // // make it so their name shows up at the top
+    // // localStorage.setItem("page_username", nameEl);
+    // key_val = { key: "page_username", value: nameEl }
+    // await fetch('/api/updateDictionary', {
+    //     method: 'POST',
+    //     headers: {'content-type': 'application/json'},
+    //     body: JSON.stringify(key_val),
+    // }).catch(error => console.error('Error in fetch:', error));
+
+
+
     window.location.href = "tasks.html";
 }

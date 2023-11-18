@@ -36,9 +36,24 @@ function logout() {
     window.location.href = "index.html";
 }
 
+async function getUser(email) {
+    // See if we have a user with the given email.
+    const response = await fetch(`/api/user/${email}`);
+    if (response.status === 200) {
+      return response.json();
+    }
+  
+    return null;
+  }
+
 async function loadPage() {
     // update login button with username
-    let response = await fetch('/api/getDictionary');
+    const user = localStorage.getItem('userName')
+    let response = await fetch('/api/getDictionary', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: user,
+    });
     const storage = await response.json();
 
     const storedUsername = storage.page_username;

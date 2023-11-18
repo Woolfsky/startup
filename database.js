@@ -42,21 +42,24 @@ async function createUser(email, password) {
 
 async function updateDict(k, v) {
     const filter = {
-        doc_identifier_ : "the one and only"
+        email : k
     };
 
     const updateDocument = {};
     updateDocument['$set'] = {
-        [k]: v,
+        [k.split("@")[0]]: v,
     };
     
-    const result = await myCollection.updateOne(filter, updateDocument);
-    return getDict();
+    const result = await userCollection.updateOne(filter, updateDocument);
+    return getDict(k);
 }
 
-async function getDict() {
-    const cursor = await myCollection.find();
+async function getDict(userName) {
+    const filter = { email: userName }
+    const cursor = await userCollection.find(filter);
     const resultArray = await cursor.toArray();
+    console.log("here is the resultArray from getDict:")
+    console.log(resultArray[0])
     return resultArray[0];
 }
 
@@ -68,5 +71,3 @@ module.exports = {
     getUserByToken,
     createUser
 };
-
-// Note, I should probaly store users in a dictionary within the db so that people can't override keys like page_username with their login credentials on accident
