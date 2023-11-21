@@ -965,3 +965,7 @@ db.house.find({ summary: /(modern|beach)/i });
 ```
 
 See [this](https://github.com/webprogramming260/.github/blob/main/profile/webServices/dataServices/dataServices.md) page for info on setting up a basic Mongo db.
+
+
+### WebSocket
+WebSocket enables a server and a user to both initiate requests (peer-to-peer communication). If you want to add a third person, the server needs to act as an intermediary since you always need to have the communication between only two things. WebSocket starts out as normal HTTPS, but then it is "upgraded" to a peer-to-peer connection.
