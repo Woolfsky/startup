@@ -26,13 +26,7 @@ function logout() {
     }).then(() => (window.location.href = '/'));
 }
 
-function loadPage() {
-    // update login button with username
-    const storedUsername = localStorage.getItem('page_username');
-    if (storedUsername) { document.getElementById('login_button').textContent = storedUsername; }
-}
 
-loadPage();
 
 
 // Advice functionality
