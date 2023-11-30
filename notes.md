@@ -969,3 +969,41 @@ See [this](https://github.com/webprogramming260/.github/blob/main/profile/webSer
 
 ### WebSocket
 WebSocket enables a server and a user to both initiate requests (peer-to-peer communication). If you want to add a third person, the server needs to act as an intermediary since you always need to have the communication between only two things. WebSocket starts out as normal HTTPS, but then it is "upgraded" to a peer-to-peer connection.
+
+### React
+React is a web framework that makes building pages easier. The main idea is dynamically updating the DOM for a single page whenever things need to change instead of having multiple pages. The HTML page usually just has one div element that is manipulated:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+
+    <div id="mydiv"></div>
+
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(
+            document.getElementById('mydiv')
+        );
+        const element = (
+          <div>
+          <h1>Hello, world</h1>
+          <h3>Goodbye, world</h3>
+          </div>
+        )
+        root.render(element);    
+    </script>
+
+  </body>
+</html>
+```
+
+**Rendering**<br>
+When `render` is called, the new DOM is compared to the existing one, and only the discrepancies are updated.<br>
+<br>
+
+**Components**<br>
