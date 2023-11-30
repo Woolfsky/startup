@@ -77,3 +77,10 @@ I added the following functionality to my server:
 + **User authentication** — The server also supports existing user authentication
 + **Stores and retrieves credentials in MongoDB** — My server uses MongoDB to store and receive each user's task-card information
 + **Restricts application functionality based upon authentication** — unauthenticated users cannot access information
+
+## WebSocket Deliverable
+I added the following functionality through WebSockets:
++ **Backend** - the backend listens for WebSocket connection
++ **Frontend** - the frontend makes WebSocket connection
++ **Data sending** - data is sent over the WebSocket connection
++ **Data display** - WebSocket data displayed in the application interface on the *Community* page
