@@ -59,14 +59,21 @@ For this deliverable, I added functionality to my server:
 
 ## Service Deliverable
 For this deliverable, I added the following functionality to my server:
-+ HTTP service using Node.js and Express — I configured my server to use Node.js and Express!
-+ Frontend served up using express static middleware — Done! My frontend is served up using Express
-+ Frontend calls third-party service endpoints — I added an "Advice of the Day!" section to the *Community* page which makes a request to a third-party advice generator
-+ Backend provides service endpoints — My backend provides endpoints that my frontend calls
-+ Frontend calls those service endpoints — My frontend calls those backend endpoints
++ **HTTP service using Node.js and Express** — I configured my server to use Node.js and Express!
++ **Frontend served up using express static middleware** — Done! My frontend is served up using Express
++ **Frontend calls third-party service endpoints** — I added an "Advice of the Day!" section to the *Community* page which makes a request to a third-party advice generator
++ **Backend provides service endpoints** — My backend provides endpoints that my frontend calls
++ **Frontend calls those service endpoints** — My frontend calls those backend endpoints
 
 ## DB Deliverable
 For this deliverable, I added the following functionality:
-+ MongoDB Atlas database created — Done! MongoDB is up and running
-+ Provides backend endpoints for manipulating application data — Done! My endpoints work with the database
-+ Stores application data in MongoDB — Done! MongoDB is where my data is stored
++ **MongoDB Atlas database created** — Done! MongoDB is up and running
++ **Provides backend endpoints for manipulating application data** — Done! My endpoints work with the database
++ **Stores application data in MongoDB** — Done! MongoDB is where my data is stored
+
+## Login Deliverable
+I added the following functionality to my server:
++ **User registration** — My server supports new user registration
++ **User authentication** — The server also supports existing user authentication
++ **Stores and retrieves credentials in MongoDB** — My server uses MongoDB to store and receive each user's task-card information
++ **Restricts application functionality based upon authentication** — unauthenticated users cannot access information
