@@ -1007,3 +1007,56 @@ When `render` is called, the new DOM is compared to the existing one, and only t
 <br>
 
 **Components**<br>
+Components are like JavaScript functions. They accept arbitrary inputs (called “props”) and return React elements (pretty much HTML) describing what should appear in the DOM. `props` stands for properties, and are the arguments passed into the components. They consist of things like `id` in `<div id="my_id">`. You can access them using dot notation, '{props.name}', as long as your component function takes in `props`.<br>
+<br>
+**Events**<br>
+Handling events in React is very similar to handling events in javascript except that
+React events are named using camelCase, rather than lowercase and you pass a function as the event handler, rather than a string.
+
+With HTML, you would handle the "button" event with
+```
+<button onclick="activateLasers()">
+  Activate Lasers
+</button>
+```
+Would become
+```
+<button onClick={activateLasers}>
+  Activate Lasers
+</button>
+```
+You must also call "preventDefault()" on the event to keep the default behavior from happening.<br><br>
+
+Remember, `<Form />` is how you would call the `Form()` component you define. Components should always return HTML-like stuff. If you wanted to call two components with `root.render`, you would need to make a new component that returns both of the components, and pass in that new component:<br>
+```html
+function Both() {
+        return (
+            <div>
+                <Form />
+                <Toggle />
+            </div>
+        )
+    }
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Both />);
+```
+
+**Conditional Rendering** <br>
+You can create conditional statements and display different things accordingly in the component function just like you would in normal js. Keeping track of state is a hassle, you have to make a class that inherits from the react component class and then you can set stuff in there. [Here](https://github.com/BYU-CS-260/React-Tutorial/blob/main/conditional.md) is an example if you want to see.<br><br>
+
+**Lists**<br>
+Displaying a list in React uses a `map` object:
+
+```js
+    function Numbers() { 
+      const numbers = [1, 2, 3, 4, 5];
+      const listItems = numbers.map((number) =>
+        <li>{number}</li>
+      );
+      return(<ul>{listItems}</ul>)
+    }
+```
+
+**Forms**<br>
+In HTML, form elements include things like `<input>`, `<textarea>`, and `<select>`. They usually have a state involved which requires that you pass `event.target.value` into the `setState` function. See [this](https://github.com/BYU-CS-260/React-Tutorial/blob/main/forms.md) repo for an example.
