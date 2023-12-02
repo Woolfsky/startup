@@ -971,6 +971,7 @@ See [this](https://github.com/webprogramming260/.github/blob/main/profile/webSer
 WebSocket enables a server and a user to both initiate requests (peer-to-peer communication). If you want to add a third person, the server needs to act as an intermediary since you always need to have the communication between only two things. WebSocket starts out as normal HTTPS, but then it is "upgraded" to a peer-to-peer connection.
 
 ### React
+[Helpful overview](https://github.com/webprogramming260/.github/blob/main/profile/webFrameworks/react/components/components.md)<br>
 React is a web framework that makes building pages easier. The main idea is dynamically updating the DOM for a single page whenever things need to change instead of having multiple pages. The HTML page usually just has one div element that is manipulated:
 
 ```html
@@ -1060,3 +1061,6 @@ Displaying a list in React uses a `map` object:
 
 **Forms**<br>
 In HTML, form elements include things like `<input>`, `<textarea>`, and `<select>`. They usually have a state involved which requires that you pass `event.target.value` into the `setState` function. See [this](https://github.com/BYU-CS-260/React-Tutorial/blob/main/forms.md) repo for an example.
+
+**APIs in React**<br>
+You can call APIs in react as well. See [this](https://github.com/BYU-CS-260/React-REST) repo for an example.
