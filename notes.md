@@ -1004,12 +1004,13 @@ React is a web framework that makes building pages easier. The main idea is dyna
 ```
 
 **Rendering**<br>
-When `render` is called, the new DOM is compared to the existing one, and only the discrepancies are updated.<br>
+When `render` is called, the new DOM is compared to the existing one, and only the discrepancies are updated. Whatever is returned from the render function is inserted into the component HTML element.<br>
 <br>
 
 **Components**<br>
 Components are like JavaScript functions. They accept arbitrary inputs (called “props”) and return React elements (pretty much HTML) describing what should appear in the DOM. `props` stands for properties, and are the arguments passed into the components. They consist of things like `id` in `<div id="my_id">`. You can access them using dot notation, '{props.name}', as long as your component function takes in `props`.<br>
 <br>
+
 **Events**<br>
 Handling events in React is very similar to handling events in javascript except that
 React events are named using camelCase, rather than lowercase and you pass a function as the event handler, rather than a string.
@@ -1044,7 +1045,7 @@ root.render(<Both />);
 ```
 
 **Conditional Rendering** <br>
-You can create conditional statements and display different things accordingly in the component function just like you would in normal js. Keeping track of state is a hassle, you have to make a class that inherits from the react component class and then you can set stuff in there. [Here](https://github.com/BYU-CS-260/React-Tutorial/blob/main/conditional.md) is an example if you want to see.<br><br>
+You can create conditional statements and display different things accordingly in the component function just like you would in normal js. In addition to properties, a component can have internal state. Component state is created by calling the React.useState hook function. The useState function returns a variable that contains the current state and a function to update the state.<br><br>
 
 **Lists**<br>
 Displaying a list in React uses a `map` object:
