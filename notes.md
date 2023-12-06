@@ -969,3 +969,99 @@ See [this](https://github.com/webprogramming260/.github/blob/main/profile/webSer
 
 ### WebSocket
 WebSocket enables a server and a user to both initiate requests (peer-to-peer communication). If you want to add a third person, the server needs to act as an intermediary since you always need to have the communication between only two things. WebSocket starts out as normal HTTPS, but then it is "upgraded" to a peer-to-peer connection.
+
+### React
+[Helpful overview](https://github.com/webprogramming260/.github/blob/main/profile/webFrameworks/react/components/components.md)<br>
+React is a web framework that makes building pages easier. The main idea is dynamically updating the DOM for a single page whenever things need to change instead of having multiple pages. The HTML page usually just has one div element that is manipulated:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+
+    <div id="mydiv"></div>
+
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(
+            document.getElementById('mydiv')
+        );
+        const element = (
+          <div>
+          <h1>Hello, world</h1>
+          <h3>Goodbye, world</h3>
+          </div>
+        )
+        root.render(element);    
+    </script>
+
+  </body>
+</html>
+```
+
+**Rendering**<br>
+When `render` is called, the new DOM is compared to the existing one, and only the discrepancies are updated. Whatever is returned from the render function is inserted into the component HTML element.<br>
+<br>
+
+**Components**<br>
+Components are like JavaScript functions. They accept arbitrary inputs (called “props”) and return React elements (pretty much HTML) describing what should appear in the DOM. `props` stands for properties, and are the arguments passed into the components. They consist of things like `id` in `<div id="my_id">`. You can access them using dot notation, '{props.name}', as long as your component function takes in `props`.<br>
+<br>
+
+**Events**<br>
+Handling events in React is very similar to handling events in javascript except that
+React events are named using camelCase, rather than lowercase and you pass a function as the event handler, rather than a string.
+
+With HTML, you would handle the "button" event with
+```
+<button onclick="activateLasers()">
+  Activate Lasers
+</button>
+```
+Would become
+```
+<button onClick={activateLasers}>
+  Activate Lasers
+</button>
+```
+You must also call "preventDefault()" on the event to keep the default behavior from happening.<br><br>
+
+Remember, `<Form />` is how you would call the `Form()` component you define. Components should always return HTML-like stuff. If you wanted to call two components with `root.render`, you would need to make a new component that returns both of the components, and pass in that new component:<br>
+```html
+function Both() {
+        return (
+            <div>
+                <Form />
+                <Toggle />
+            </div>
+        )
+    }
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Both />);
+```
+
+**Conditional Rendering** <br>
+You can create conditional statements and display different things accordingly in the component function just like you would in normal js. In addition to properties, a component can have internal state. Component state is created by calling the React.useState hook function. The useState function returns a variable that contains the current state and a function to update the state.<br><br>
+
+**Lists**<br>
+Displaying a list in React uses a `map` object:
+
+```js
+    function Numbers() { 
+      const numbers = [1, 2, 3, 4, 5];
+      const listItems = numbers.map((number) =>
+        <li>{number}</li>
+      );
+      return(<ul>{listItems}</ul>)
+    }
+```
+
+**Forms**<br>
+In HTML, form elements include things like `<input>`, `<textarea>`, and `<select>`. They usually have a state involved which requires that you pass `event.target.value` into the `setState` function. See [this](https://github.com/BYU-CS-260/React-Tutorial/blob/main/forms.md) repo for an example.
+
+**APIs in React**<br>
+You can call APIs in react as well. See [this](https://github.com/BYU-CS-260/React-REST) repo for an example.
