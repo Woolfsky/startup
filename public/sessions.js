@@ -214,3 +214,50 @@ function addNewTask(cardElement) {
 }
 
 
+
+// Timer functionality
+let timer;
+let minutesInput = document.getElementById('minutes');
+let timerDisplay = document.getElementById('timer');
+let remainingSeconds = 0;
+
+function startTimer() {
+  let minutes = parseInt(minutesInput.value, 10);
+  let seconds = minutes * 60;
+
+  if (remainingSeconds > 0) {
+    seconds = remainingSeconds;
+  }
+
+  timer = setInterval(function() {
+    if (seconds <= 0) {
+      clearInterval(timer);
+      timerDisplay.textContent = 'Time is up!';
+    } else {
+      let displayMinutes = Math.floor(seconds / 60);
+      let displaySeconds = seconds % 60;
+
+      timerDisplay.textContent = `${displayMinutes}:${displaySeconds < 10 ? '0' : ''}${displaySeconds}`;
+      seconds--;
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timer);
+  remainingSeconds = calculateRemainingSeconds();
+}
+
+function resetTimer() {
+  clearInterval(timer);
+  minutesInput.value = 25;
+  timerDisplay.textContent = '00:00';
+  remainingSeconds = 0;
+}
+
+function calculateRemainingSeconds() {
+  let displayTime = timerDisplay.textContent.split(':');
+  let minutes = parseInt(displayTime[0], 10);
+  let seconds = parseInt(displayTime[1], 10);
+  return minutes * 60 + seconds;
+}

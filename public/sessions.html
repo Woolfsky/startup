@@ -72,7 +72,7 @@
           </div>
           <br>
           <div style="display:flex;"> 
-            <label style="font-size: 20px;">Session length (mins):</label><input type="number" class='form-control' style="max-width: 80px; max-height: 35px; border: 1px solid #767676;" value="25">
+            <label style="font-size: 20px;" for="minutes">Session length (mins):</label><input id="minutes" type="number" min="1" class='form-control' style="max-width: 80px; max-height: 35px; border: 1px solid #767676;" value="25">
           </div>
         </div>
 
@@ -80,7 +80,7 @@
         <br>
         
 
-        <div class="cards_and_timer_container" style="gap: 100px;">
+        <div class="cards_and_timer_container" style="gap: 100px; display:flex; align-items: flex-start;">
 
             <!-- Selected card -->
             <div class="cards_container" style="gap: 100px;">
@@ -93,13 +93,13 @@
 
             <!-- Session timer -->
             <div>
-              <div class="card" style="width: 20rem; align-content: center;">
-                <img src="https://media.istockphoto.com/id/904475088/vector/stopwatch-icon.jpg?s=612x612&w=0&k=20&c=SM0DKmmrYfJKdGoVrhXuk8cMlvlXpt5ExROqr-QEN4w=" alt="picture of clock" width="300">
+              <div class="card" style="width: 20rem; align-content: center; margin-top:10px; display:grid; place-items:center">
+                <div id="timer" style="justify-content: center; font-size:80px; color:#767676">00:00</div>
                 <br>
                 <div style="justify-content: center; display:flex; gap: 5px;">
-                  <button class="btn btn-outline-success">Start</button> 
-                  <button class="btn btn-outline-danger">Stop</button> 
-                  <button class="btn btn-outline-secondary">Reset</button>
+                  <button class="btn btn-outline-success" onclick="startTimer()">Start</button> 
+                  <button class="btn btn-outline-danger" onclick="stopTimer()">Stop</button> 
+                  <button class="btn btn-outline-secondary" onclick="resetTimer()">Reset</button>
                 </div>
               </div>
             </div>
