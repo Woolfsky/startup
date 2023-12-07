@@ -1065,3 +1065,20 @@ In HTML, form elements include things like `<input>`, `<textarea>`, and `<select
 
 **APIs in React**<br>
 You can call APIs in react as well. See [this](https://github.com/BYU-CS-260/React-REST) repo for an example.
+
+**Hooks**<br>
+Hooks are used to keep track of stuff or to do other stuff. One example is `useState` which returns two objects, the state variable you're keeping track of, and a function to change it: 
+
+```js
+const [color, setColor] = React.useState('blue')
+```
+
+The `useEffect` hook is called every time a component renders or re-renders:
+
+```js
+React.useEffect(() => {
+  console.log("finished rendering");
+})
+```
+
+If you want `useEffect` to take place only after certain components render, you can pass in a second parameter (a list of dependencies): `React.useEffect(() => {...}, [color1, color3])`. Passing in empty brackets, `[]` makes it so it only occurs after the initial render.
