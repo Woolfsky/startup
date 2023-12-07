@@ -2,7 +2,7 @@ html {
     height: 100%;
 }
 
-body {
+.body {
     background-color: #fbfbfd;
     display: flex;
     flex-direction: column;
