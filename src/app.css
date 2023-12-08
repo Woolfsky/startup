@@ -2,11 +2,27 @@ html {
     height: 100%;
 }
 
+.focusH1 {
+    margin-left: 30px;
+}
+
 body {
     background-color: #fbfbfd;
     display: flex;
     flex-direction: column;
     min-width: 375px;
+    height: 100%;
+}
+
+.body {
+    background-color: #fbfbfd;
+    display: flex;
+    flex-direction: column;
+    min-width: 375px;
+    height: 100%;
+}
+
+#root {
     height: 100%;
 }
 
