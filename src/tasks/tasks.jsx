@@ -3,47 +3,16 @@ import React from 'react';
 import './tasks.css';
 
 export function Tasks() {
-  async function newCard() {
-    const newCard = new Card();
-
-    const userName = localStorage.getItem('userName')
-    const userNameObject = {"userName": userName}
-    let response = await fetch('/api/getDictionary', {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify(userNameObject),
-    });
-    const storage = await response.json()
-
-    const key_ = userName.split("@")[0]
-    const stringified_stuff = storage[key_]
-
-    const user = eval('(' + stringified_stuff + ')')
-
-    if (user && user.tasks) {
-        user.tasks.push(newCard);
-    } else {
-        user.tasks = [newCard];
-    }
-
-    let key_val;
-    key_val = { key: userName, value: JSON.stringify(user) };
-    await fetch('/api/updateDictionary', {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify(key_val),
-    }).catch(error => console.error('Error in fetch:', error));
-    loadAndDisplayCards();
-}
-
   class Card {
     constructor(title, list) {
         this.title = title || '[Add title]';
         this.list = list || [{ text: 'New task', checked: false }];
     }
-}
+  }
 
+  // Function to load and display cards on page load
   async function loadAndDisplayCards() {
+    // console.log("load and display cards function called")
     const userName = localStorage.getItem('userName')
     const userNameObject = {"userName": userName}
     let response = await fetch('/api/getDictionary', {
@@ -57,6 +26,7 @@ export function Tasks() {
     const user = eval('(' + stringified_stuff + ')')
     if (user && user.tasks) {
         const cardsContainer = document.querySelector('.cards_container');
+        cardsContainer.addEventListener('input', () => {saveCardChanges()}) //added this line!!!
         cardsContainer.innerHTML = ''; // Clear existing cards
         user.tasks.forEach((task) => {
             const card = createCardElement(task);
@@ -65,7 +35,9 @@ export function Tasks() {
     }
   }
 
+  // Function to create a card element
   function createCardElement(card) {
+    // console.log('create card element function called')
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('card');
     cardDiv.style.width = '25rem';
@@ -90,13 +62,14 @@ export function Tasks() {
         taskText.contentEditable = true;
         taskText.textContent = task.text;
         // add an event listener to the checkbox to update the task's check status
-        checkbox.addEventListener('change', () => {
-            task.checked = checkbox.checked;
-            saveCardChanges();
-        });
+        // checkbox.addEventListener('change', () => {
+        //     task.checked = checkbox.checked;
+        //     saveCardChanges();
+        // });
         taskItem.appendChild(checkbox);
         taskItem.appendChild(taskText);
         taskList.appendChild(taskItem);
+          
     });
 
     // plus button for adding a new task
@@ -117,7 +90,10 @@ export function Tasks() {
     return cardDiv;
   }
 
+
+  // Function to add a new task to a card
   function addNewTask(cardElement) {
+    // console.log("add new task function called")
     const taskList = cardElement.querySelector('.list-group');
     const taskItem = document.createElement('li');
     taskItem.classList.add('list-group-item');
@@ -129,7 +105,43 @@ export function Tasks() {
     saveCardChanges();
   }
 
+  // Function to add a new card
+  async function newCard() {
+    // console.log("new card function called")
+    const newCard = new Card();
+
+    const userName = localStorage.getItem('userName')
+    const userNameObject = {"userName": userName}
+    let response = await fetch('/api/getDictionary', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(userNameObject),
+    });
+    const storage = await response.json()
+
+    const key_ = userName.split("@")[0]
+    const stringified_stuff = storage[key_]
+
+    const user = eval('(' + stringified_stuff + ')')
+
+    if (user && user.tasks) {
+        user.tasks.push(newCard);
+    } else {
+        user.tasks = [newCard];
+    }
+
+    let key_val = { key: userName, value: JSON.stringify(user) };
+    await fetch('/api/updateDictionary', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(key_val),
+    }).catch(error => console.error('Error in fetch:', error));
+    loadAndDisplayCards();
+  }
+
+  // Function to save card changes
   async function saveCardChanges() {
+    // console.log("save card changes called")
     const userName = localStorage.getItem('userName')
     const userNameObject = {"userName": userName}
     let response = await fetch('/api/getDictionary', {
@@ -161,8 +173,7 @@ export function Tasks() {
         });
 
         // localStorage.setItem(storedUsername, JSON.stringify(user));
-        let key_val;
-        key_val = { key: userName, value: JSON.stringify(user) };
+        let key_val = { key: userName, value: JSON.stringify(user) };
         await fetch('/api/updateDictionary', {
             method: 'POST',
             headers: {'content-type': 'application/json'},
@@ -171,13 +182,9 @@ export function Tasks() {
     }
   }
 
-  // // attach save changes function to the card container
-  // const cardsContainer = document.querySelector('.cards_container');
-  // cardsContainer.addEventListener('input', saveCardChanges);
-
   React.useEffect(() => {
     loadAndDisplayCards();
-    saveCardChanges();
+    // console.log("load and display effect rendered")
   }, [])
 
   return (

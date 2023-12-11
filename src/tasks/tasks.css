@@ -2,7 +2,7 @@
     text-align: left;
 }
 
-.cards_container, .cards_and_timer_container {
+.cards_container {
     display: flex; 
     flex-wrap: wrap;
     justify-content: center;
