@@ -241,11 +241,14 @@ function startTimer() {
       seconds--;
     }
   }, 1000);
+
+  document.getElementById('start_button').disabled = true;
 }
 
 function stopTimer() {
   clearInterval(timer);
   remainingSeconds = calculateRemainingSeconds();
+  document.getElementById('start_button').disabled = false;
 }
 
 function resetTimer() {
@@ -253,6 +256,7 @@ function resetTimer() {
   minutesInput.value = 25;
   timerDisplay.textContent = '00:00';
   remainingSeconds = 0;
+  document.getElementById('start_button').disabled = false;
 }
 
 function calculateRemainingSeconds() {

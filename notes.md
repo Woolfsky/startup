@@ -1081,4 +1081,17 @@ React.useEffect(() => {
 })
 ```
 
-If you want `useEffect` to take place only after certain components render, you can pass in a second parameter (a list of dependencies): `React.useEffect(() => {...}, [color1, color3])`. Passing in empty brackets, `[]` makes it so it only occurs after the initial render.
+If you want `useEffect` to take place only after certain components render, you can pass in a second parameter (a list of dependencies): `React.useEffect(() => {...}, [color1, color3])`. Passing in empty brackets, `[]` makes it so it only occurs after the initial render.<br>
+<br>
+
+### Vite
+Vite is a toolchain that bundles your code quickly, has great debugging support, and allows you to easily support JSX, TypeScript, and different CSS flavors. You can create a React-based web app using Vite, you can run this code:
+
+```sh
+npm create vite@latest demoVite -- --template react
+cd demoVite
+npm install
+npm run dev
+```
+
+
