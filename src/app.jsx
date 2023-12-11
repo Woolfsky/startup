@@ -4,10 +4,16 @@ import { Login } from './login/login';
 import { Tasks } from './tasks/tasks';
 import { Sessions } from './sessions/sessions';
 import { Community } from './community/community';
+import { AuthState } from './login/authState';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 export default function App() {
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+
   return (
     <BrowserRouter>
         <div className="body" >
@@ -17,23 +23,55 @@ export default function App() {
 
                 {/* Menu */}
                 <ul className="nav justify-content-end">
+                {authState === AuthState.Authenticated && (
+                    <li className="nav-item"><NavLink className="nav-link" to="login">Welcome</NavLink></li>
+                )}
+                {authState === AuthState.Authenticated && (
                     <li className="nav-item"><NavLink className="nav-link" aria-current="page" to="tasks">Tasks</NavLink></li>
+                )}
+                {authState === AuthState.Authenticated && (
                     <li className="nav-item"><NavLink className="nav-link" to="sessions">Sessions</NavLink></li>
+                )}
+                {authState === AuthState.Authenticated && (
                     <li className="nav-item"><NavLink className="nav-link" to="community">Community</NavLink></li>
+                )}
                 </ul>
 
                 {/* Login */}
-                <div className="col-md-1 text-center">
-                    <button id="logout_button" type="button" className="btn btn-outline-secondary" >Logout</button>
-                {/* this button ^^ is missing this code: onClick='logout()' */}
-                </div>
+                {/* {authState === AuthState.Authenticated && (
+                    <div className="col-md-1 text-center">
+                        <button id="logout_button" type="button" className="btn btn-outline-secondary" onClick={() => logout_()}>Logout</button>
+                    </div>
+                )} */}
 
                 <hr />
             </header>
 
             <Routes>
-                <Route path='/' element={<Tasks />} exact /> {/* fix this later */}
-                <Route path='/login' element={<Login />} exact />
+                <Route
+                    path='/'
+                    element={
+                    <Login
+                        userName={userName}
+                        authState={authState}
+                        onAuthChange={(userName, authState) => {
+                        setAuthState(authState);
+                        setUserName(userName);
+                        }}
+                    />
+                    }
+                    exact
+                />
+                <Route path='/login' element={
+                    <Login
+                        userName={userName}
+                        authState={authState}
+                        onAuthChange={(userName, authState) => {
+                        setAuthState(authState);
+                        setUserName(userName);
+                        }}
+                    />
+                    } exact />
                 <Route path='/tasks' element={<Tasks />} />
                 <Route path='/sessions' element={<Sessions />} />
                 <Route path='/community' element={<Community />} />
