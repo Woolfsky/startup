@@ -1,0 +1,75 @@
+
+#community_holder {
+    text-align: left; margin: 10px;
+}
+
+.tips_title {
+    text-align: center;
+    color:#6c757d;
+}
+
+#image {
+    padding-bottom: 10px;
+}
+
+#second_holder {
+    border:#6c757d solid; border-radius: 10px; padding: 10px; margin-bottom: 20px;
+}
+
+#advice {
+    border:#6c757d solid; border-radius: 10px; padding: 10px; margin-bottom: 20px;
+}
+
+.mountain {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+#community_chat {
+    border:#6c757d solid; border-radius: 10px; padding: 10px; height: 500px; position: relative;
+}
+
+.name-controls {
+    font-size: 20px; color:#6c757d
+}
+
+.chat-messages div {
+    color:red;
+}
+
+.chat-messages {
+    height: 75%; overflow: auto;
+}
+
+div .friend {
+    color: rgb(153, 87, 148);
+    margin-left: 0.5em;
+  }
+  div .me {
+    color: rgb(87, 153, 117);
+  }
+  div .system {
+    color: rgb(225, 103, 10);
+  }
+  .name {
+    padding: 1em 0;
+  }
+
+.fieldset {
+    width: 100%;
+}
+
+#lower_div {
+    display:flex;
+}
+
+#new-msg {
+    width: 100%;
+}
+
+#advice {
+    justify-content: center;
+    text-align: center;
+}

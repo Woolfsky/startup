@@ -3,6 +3,7 @@ import React from 'react';
 import './sessions.css';
 
 export function Sessions() {
+
   class Card {
     constructor(title, list) {
         this.title = title || '[Add title]';
@@ -213,62 +214,53 @@ export function Sessions() {
       }
   }
 
-
-
-  // Timer functionality
-  let timer;
-  let minutesInput = document.getElementById('minutes');
-  let timerDisplay = document.getElementById('timer');
-  let remainingSeconds = 0;
-
-  function startTimer() {
-    let minutes = parseInt(minutesInput.value, 10);
-    let seconds = minutes * 60;
-
-    if (remainingSeconds > 0) {
-      seconds = remainingSeconds;
-    }
-
-    timer = setInterval(function() {
-      if (seconds <= 0) {
-        clearInterval(timer);
-        timerDisplay.textContent = 'Time is up!';
-      } else {
-        let displayMinutes = Math.floor(seconds / 60);
-        let displaySeconds = seconds % 60;
-
-        timerDisplay.textContent = `${displayMinutes}:${displaySeconds < 10 ? '0' : ''}${displaySeconds}`;
-        seconds--;
-      }
-    }, 1000);
-
-    document.getElementById('start_button').disabled = true;
-  }
-
-  function stopTimer() {
-    clearInterval(timer);
-    remainingSeconds = calculateRemainingSeconds();
-    document.getElementById('start_button').disabled = false;
-  }
-
-  function resetTimer() {
-    clearInterval(timer);
-    minutesInput.value = 25;
-    timerDisplay.textContent = '00:00';
-    remainingSeconds = 0;
-    document.getElementById('start_button').disabled = false;
-  }
-
-  function calculateRemainingSeconds() {
-    let displayTime = timerDisplay.textContent.split(':');
-    let minutes = parseInt(displayTime[0], 10);
-    let seconds = parseInt(displayTime[1], 10);
-    return minutes * 60 + seconds;
-  }
-
   React.useEffect(() => {
     loadTaskTitles()
   }, [])
+
+  const [minutes, setMinutes] = React.useState(0);
+  const [seconds, setSeconds] = React.useState(0);
+  const [isActive, setIsActive] = React.useState(false);
+
+  React.useEffect(() => {
+    let interval;
+
+    if (isActive) {
+      interval = setInterval(() => {
+        if (seconds > 0) {
+          setSeconds((prevSeconds) => prevSeconds - 1);
+        } else if (minutes > 0) {
+          setMinutes((prevMinutes) => prevMinutes - 1);
+          setSeconds(59);
+        } else {
+          clearInterval(interval);
+          setIsActive(false);
+        }
+      }, 1000);
+    } else {
+      clearInterval(interval);
+    }
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isActive, minutes, seconds]);
+
+  const handleStart = () => {
+    if (minutes > 0 || seconds > 0) {
+      setIsActive(true);
+    }
+  };
+
+  const handleStop = () => {
+    setIsActive(false);
+  };
+
+  const handleReset = () => {
+    setMinutes(0);
+    setSeconds(0);
+    setIsActive(false);
+  };
 
 
 
@@ -285,8 +277,15 @@ export function Sessions() {
           </div>
           <br></br>
           <div className="sessionHolder"> 
-            <label id="sessionLength" htmlFor="minutes">Session length (mins):</label>
-            <input id="minutes" type="number" min="1" className='form-control' defaultValue="25"></input>
+           <label id="sessionLength" htmlFor="minutesInput">Session length (mins):</label>
+            <input
+              className="form-control"
+              id="minutesInput"
+              type="number"
+              min="0"
+              value={minutes}
+              onChange={(e) => setMinutes(parseInt(e.target.value, 10))}
+            />
           </div>
       </div>
 
@@ -299,17 +298,14 @@ export function Sessions() {
           </div>
         </div>
 
-        <div>
-          <div className="card" id="timerCard_">
-            <div id="timer" >00:00</div>
-            <br></br>
-            <div id="timerHolder">
-              <button id="start_button" className="btn btn-outline-success" onClick={() => startTimer()}>Start</button> 
-              <button className="btn btn-outline-danger" onClick={() => stopTimer()}>Stop</button> 
-              <button className="btn btn-outline-secondary" onClick={() => resetTimer()}>Reset</button>
-            </div>
+        <div className="card" id="timerCard_" >
+          <h1 id="timer" >{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}</h1>
+          <div>
+            <button className="btn btn-outline-success" onClick={handleStart}>Start</button>
+            <button className="btn btn-outline-danger" onClick={handleStop}>Stop</button>
+            <button className="btn btn-outline-secondary" onClick={handleReset}>Reset</button>
           </div>
-      </div>
+        </div>
       </div>
       
     </main>
