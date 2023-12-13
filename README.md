@@ -84,3 +84,10 @@ I added the following functionality through WebSockets:
 + **Frontend** - the frontend makes WebSocket connection
 + **Data sending** - data is sent over the WebSocket connection
 + **Data display** - WebSocket data displayed in the application interface on the *Community* page
+
+## React Deliverable
+For this deliverable, I converted my web application into one that uses React!
++ **Bundled and transpiled** - done!
++ **Components** — I created dynamic components for the Login, Tasks, Sessions, and Community pages
++ **Router** — I used a router to route between the different components
++ **Hooks** — I used multiple types of hooks including `useState`, `useEffect`, and `useCallback`
