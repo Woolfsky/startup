@@ -1,14 +1,68 @@
 import React from 'react';
-
 import './community.css';
 
 export function Community() {
+  const [socket, setSocket] = React.useState(null);
+
+  const appendMsg = React.useCallback((cls, from, msg) => {
+    const chatText = document.querySelector('#chat-messages');
+    chatText.innerHTML = chatText.innerHTML + `<div><span class="${cls}">${from}</span>: ${msg}</div>`;
+  }, []);
+
+  const scrollDown = React.useCallback(() => {
+    var chatContainer = document.getElementById('chat-messages');
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  }, []);
+
+  const sendMessage = React.useCallback(() => {
+    const msgEl = document.querySelector('#new-msg');
+    const msg = msgEl.value;
+    if (!!msg) {
+      appendMsg('me', 'me', msg);
+      const name = document.querySelector('#my-name').value;
+      socket.send(`{"name":"${name}", "msg":"${msg}"}`);
+      msgEl.value = '';
+    }
+    scrollDown();
+  }, [socket, appendMsg]);
+  
+  React.useEffect(() => {
+    // Adjust the webSocket protocol to what is being used for HTTP
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    // Create WebSocket only if it doesn't exist
+    if (!socket) {
+      const newSocket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+      setSocket(newSocket);
+    // Display that we have opened the WebSocket
+    newSocket.onopen = (event) => {
+      appendMsg('system', 'websocket', 'connected');
+    };
+    // Display messages we receive from our friends
+    newSocket.onmessage = async (event) => {
+      const text = await event.data.text();
+      const chat = JSON.parse(text);
+      appendMsg('friend', chat.name, chat.msg);
+      scrollDown();
+    };
+    // If the WebSocket is closed then disable the interface
+    newSocket.onclose = (event) => {
+      appendMsg('system', 'websocket', 'disconnected');
+      document.querySelector('#name-controls').disabled = true;
+      document.querySelector('#chat-controls').disabled = true;
+    };
+  }
+    // Cleanup function to close WebSocket when the component unmounts
+    return () => {
+      if (socket) {
+        socket.close();
+      }
+    };
+  }, [socket]);
 
   const [quote, setQuote] = React.useState('Loading...');
 
   React.useEffect(() => {
     const random = Math.floor(Math.random() * 1000);
-
     fetch('https://api.adviceslip.com/advice')
       .then((response) => response.json())
       .then((data) => {
@@ -16,19 +70,18 @@ export function Community() {
       })
       .catch();
     }, []);
-  
-    const [chatStatus, setChatStatus] = React.useState(true);
-    const [name, setName] = React.useState("");
 
-    React.useEffect(() => {
-      setChatStatus(name === "");
-    }, [name]);
+  const [chatStatus, setChatStatus] = React.useState(true);
+  const [name, setName] = React.useState("");
 
+  React.useEffect(() => {
+    setChatStatus(name === "");
+  }, [name]);
 
   return (
     <main>
       <div id="community_holder" >
-            <h2 className="tips_title">Community Tips & Tricks for Studying</h2>
+            <h2 className="tips_title" id="maintitle" >Community Tips & Tricks for Studying</h2>
 
             <img className="mountain" id="image" src="https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2747&q=80" alt="nature" width="1400"></img>
 
@@ -82,11 +135,21 @@ export function Community() {
             
                 <div id="chat-messages" ></div>
 
-                <div className="input-group mb-3" >
+                <div className="input-group mb-3" id="chatControlsDiv" >
                   <fieldset className="fieldset" id="chat-controls" disabled={chatStatus}>
-                    <div id="lower_div" >
-                      <input id="new-msg" type="text" placeholder="Type your message"/>
-                      <span className="input-group-append"><button className="btn btn-outline-secondary" onClick={() => sendMessage()}>Send</button></span>
+                    <div id="lower_div" style={{ position: 'absolute', bottom: 0, width: '100%' }}>
+                    <input
+                      id="new-msg"
+                      type="text"
+                      placeholder="Type your message"
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault(); // Prevents adding a new line in the text area
+                          sendMessage();
+                        }
+                      }}
+                    />
+                      <span className="input-group-append" ><button className="btn btn-outline-secondary" onClick={() => sendMessage()}>Send</button></span>
                     </div>
                   </fieldset>
                 </div>
@@ -94,8 +157,8 @@ export function Community() {
             
                 <div id="chat-messages" ></div>
 
-
             </div>
+
           </div>
     </main>
   );

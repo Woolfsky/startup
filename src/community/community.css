@@ -4,7 +4,7 @@
 }
 
 .tips_title {
-    text-align: center;
+    text-align: left;
     color:#6c757d;
 }
 
@@ -35,12 +35,13 @@
     font-size: 20px; color:#6c757d
 }
 
-.chat-messages div {
-    color:red;
+#chat-messages div {
+    color:rgb(0, 0, 0);
 }
 
-.chat-messages {
-    height: 75%; overflow: auto;
+#chat-messages {
+    height: 100%; overflow: auto;
+    max-height: 75%;
 }
 
 div .friend {
@@ -62,7 +63,7 @@ div .friend {
 }
 
 #lower_div {
-    display:flex;
+    display: flex;
 }
 
 #new-msg {
@@ -71,5 +72,14 @@ div .friend {
 
 #advice {
     justify-content: center;
+    text-align: left;
+}
+
+#maintitle {
     text-align: center;
+}
+
+#chatControlsDiv {
+    height: 10%;
+    
 }

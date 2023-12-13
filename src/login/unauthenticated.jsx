@@ -41,6 +41,7 @@ export function Unauthenticated(props) {
           <input
             className='form-control'
             type='text'
+            style={{maxWidth:"100%"}}
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             placeholder='your@email.com'
@@ -51,8 +52,15 @@ export function Unauthenticated(props) {
           <input
             className='form-control'
             type='password'
+            style={{maxWidth:"100%"}}
             onChange={(e) => setPassword(e.target.value)}
             placeholder='password'
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault(); // Prevents adding a new line in the text area
+                loginUser();
+              }
+            }}
           />
         </div>
         <Button variant='btn btn-outline-secondary' onClick={() => createUser()}>
